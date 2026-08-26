@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[Şirket Adın] LLC | Software & Game Studio</title>
+  <title>Studio LLC | Software & Game Development</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-600 selection:text-white">
 
   <!-- Navigation -->
-  <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+  <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <span class="text-xl font-bold tracking-tight text-white">[Şirket Adın] <span class="text-indigo-500 text-sm font-semibold">LLC</span></span>
-      <nav class="space-x-6 text-sm text-slate-400 font-medium">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
+          S
+        </div>
+        <span class="text-lg font-bold tracking-tight text-white">[Şirket Adın] <span class="text-indigo-400 text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950/80 border border-indigo-800/60 ml-1">LLC</span></span>
+      </div>
+      <nav class="space-x-8 text-sm text-slate-400 font-medium">
         <a href="#products" class="hover:text-white transition">Products</a>
         <a href="#about" class="hover:text-white transition">About</a>
         <a href="#contact" class="hover:text-white transition">Contact</a>
@@ -28,62 +33,81 @@
 
   <!-- Hero Section -->
   <main>
-    <section class="max-w-6xl mx-auto px-6 py-24 text-center">
-      <span class="inline-block px-3 py-1 bg-indigo-950/60 border border-indigo-800/50 text-indigo-400 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
-        Independent Studio
-      </span>
-      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-white max-w-3xl mx-auto leading-tight">
-        Building Intuitive Apps & Engaging Digital Experiences
+    <section class="max-w-5xl mx-auto px-6 pt-24 pb-16 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-950/50 border border-indigo-800/40 text-indigo-300 rounded-full text-xs font-semibold uppercase tracking-wider mb-8">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Independent Software & Game Studio
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        Building High-Performance Apps & Immersive Games
       </h1>
       <p class="mt-6 text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-        [Şirket Adın] LLC is an independent software and game development studio crafting cross-platform utility tools and indie games for global audiences.
+        [Şirket Adın] LLC is a digital development studio registered in New Mexico, focused on crafting scalable cross-platform applications and engaging indie games for global audiences.
       </p>
     </section>
 
     <!-- Products Section -->
     <section id="products" class="max-w-6xl mx-auto px-6 py-12">
-      <h2 class="text-2xl font-bold tracking-tight text-white mb-8 border-b border-slate-800 pb-4">Featured Products</h2>
+      <div class="flex items-center justify-between mb-8 border-b border-slate-800/80 pb-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight text-white">Featured Projects</h2>
+          <p class="text-sm text-slate-400 mt-1">Our core application and game ecosystem</p>
+        </div>
+      </div>
+      
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <!-- Product 1 -->
-        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition flex flex-col justify-between">
+        <div class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between shadow-sm">
           <div>
-            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Productivity / App</span>
-            <h3 class="text-xl font-bold text-white mt-2">FractalTask</h3>
+            <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold mb-4 group-hover:scale-105 transition">
+              FT
+            </div>
+            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Productivity Application</span>
+            <h3 class="text-xl font-bold text-white mt-1">FractalTask</h3>
             <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-              A streamlined routine and task management application built with Flutter, designed to optimize daily workflows with local network synchronization.
+              A modern workflow and routine management application built with Flutter, focused on local-network sync and distraction-free task architecture.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-slate-500 font-medium">
-            Platforms: iOS & Android
+          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-500 font-medium">
+            <span>Target Platforms:</span>
+            <span class="text-slate-300 font-semibold">iOS • Android</span>
           </div>
         </div>
 
         <!-- Product 2 -->
-        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition flex flex-col justify-between">
+        <div class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between shadow-sm">
           <div>
-            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Puzzle / Game</span>
-            <h3 class="text-xl font-bold text-white mt-2">Tilt</h3>
+            <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold mb-4 group-hover:scale-105 transition">
+              TL
+            </div>
+            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Indie Mobile Game</span>
+            <h3 class="text-xl font-bold text-white mt-1">Tilt</h3>
             <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-              An engaging 2D puzzle game featuring dynamic number-merging mechanics and minimal, modern mobile interaction design.
+              A minimalistic 2D number-merging puzzle game designed with intuitive touch physics, adaptive difficulty, and modern mobile gameplay loops.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-slate-500 font-medium">
-            Platforms: iOS & Android
+          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-500 font-medium">
+            <span>Target Platforms:</span>
+            <span class="text-slate-300 font-semibold">iOS • Android</span>
           </div>
         </div>
 
         <!-- Product 3 -->
-        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition flex flex-col justify-between">
+        <div class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between shadow-sm">
           <div>
-            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Strategy / Game</span>
-            <h3 class="text-xl font-bold text-white mt-2">Bidder Arena</h3>
+            <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold mb-4 group-hover:scale-105 transition">
+              BA
+            </div>
+            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Strategy Game</span>
+            <h3 class="text-xl font-bold text-white mt-1">Bidder Arena</h3>
             <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-              A strategic offline auto-battler centered around competitive auction dynamics and tactical team management.
+              A tactical offline auto-battler built in Godot Engine, blending strategic bidding dynamics with algorithmic combat systems.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-slate-500 font-medium">
-            Platforms: PC & Mobile
+          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-500 font-medium">
+            <span>Target Platforms:</span>
+            <span class="text-slate-300 font-semibold">PC • Mobile</span>
           </div>
         </div>
 
@@ -91,11 +115,11 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-900">
-      <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-8 max-w-3xl mx-auto text-center">
+    <section id="about" class="max-w-6xl mx-auto px-6 py-12">
+      <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 sm:p-12">
         <h2 class="text-2xl font-bold text-white">About the Studio</h2>
-        <p class="mt-4 text-slate-400 text-sm leading-relaxed">
-          Founded in 2026, [Şirket Adın] LLC specializes in modern software engineering, mobile frameworks, and game development. We design, deploy, and scale digital products distributed across global marketplaces including the Apple App Store, Google Play, and Steam.
+        <p class="mt-4 text-slate-400 text-sm leading-relaxed max-w-3xl">
+          Founded in 2026, [Şirket Adın] LLC is a commercial entity dedicated to building scalable digital applications, cross-platform software architectures, and independent video games. We leverage cutting-edge frameworks to deliver robust, privacy-first, and performant digital experiences distributed globally through the Apple App Store, Google Play Store, and Steam.
         </p>
       </div>
     </section>
@@ -103,18 +127,42 @@
 
   <!-- Footer -->
   <footer id="contact" class="border-t border-slate-900 bg-slate-950 py-12 text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="text-center md:text-left">
-        <p class="font-semibold text-slate-400">[Şirket Adın] LLC</p>
-        <p class="mt-1">Registered in New Mexico, USA</p>
-        <p class="mt-0.5">[New Mexico Registered Agent Adresin]</p>
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div>
+        <p class="font-bold text-slate-300 text-sm">[Şirket Adın] LLC</p>
+        <p class="mt-1">Registered Entity in New Mexico, USA</p>
+        <p class="mt-0.5 text-slate-600">[New Mexico Registered Agent Adresin]</p>
       </div>
-      <div class="text-center md:text-right">
-        <p>Inquiries: <a href="mailto:contact@yourdomain.com" class="text-indigo-400 hover:underline">contact@yourdomain.com</a></p>
-        <p class="mt-2">© 2026 [Şirket Adın] LLC. All rights reserved.</p>
+      <div class="flex flex-col md:items-end gap-2">
+        <p>Inquiries: <a href="mailto:contact@[sirketadi].com" class="text-indigo-400 hover:underline">contact@[sirketadi].com</a></p>
+        <div class="flex items-center gap-4 mt-1">
+          <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')" class="hover:text-slate-300 transition underline">Privacy Policy</button>
+          <span>•</span>
+          <p>© 2026 [Şirket Adın] LLC. All rights reserved.</p>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl">
+      <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+        <h3 class="text-lg font-bold text-white">Privacy Policy</h3>
+        <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="text-slate-400 hover:text-white text-xl font-bold">✕</button>
+      </div>
+      <div class="p-6 overflow-y-auto text-sm text-slate-300 space-y-4">
+        <p><strong>Effective Date:</strong> January 1, 2026</p>
+        <p>[Şirket Adın] LLC ("we", "our", or "us") respects your privacy. This policy explains how our applications and games handle user data.</p>
+        <p><strong>1. Data Collection:</strong> We do not collect personally identifiable information without explicit user consent. Our applications are designed with local-first and privacy-centric architectures.</p>
+        <p><strong>2. Third-Party Services:</strong> Our apps and games may utilize third-party analytics and distribution platforms (e.g., Apple App Store, Google Play Services) governed by their respective privacy policies.</p>
+        <p><strong>3. Contact:</strong> For any privacy-related inquiries, please reach out via our contact email.</p>
+      </div>
+      <div class="p-4 border-t border-slate-800 bg-slate-900/50 flex justify-end">
+        <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-semibold transition">Close</button>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
