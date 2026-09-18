@@ -26,7 +26,8 @@
       <nav class="space-x-8 text-sm text-slate-400 font-medium">
         <a href="#products" class="hover:text-white transition">Products</a>
         <a href="#about" class="hover:text-white transition">About</a>
-        <a href="#contact" class="hover:text-white transition">Contact</a>
+        <a href="#privacy" class="hover:text-white transition">Privacy</a>
+        <a href="#contact" class="hover:text-white transition">Support</a>
       </nav>
     </div>
   </header>
@@ -56,7 +57,6 @@
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
         <!-- Product 1 -->
         <div class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between shadow-sm">
           <div>
@@ -110,7 +110,6 @@
             <span class="text-slate-300 font-semibold">PC • Mobile</span>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -119,50 +118,44 @@
       <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 sm:p-12">
         <h2 class="text-2xl font-bold text-white">About the Studio</h2>
         <p class="mt-4 text-slate-400 text-sm leading-relaxed max-w-3xl">
-          Founded in 2026, Falcon 29 LLC is a commercial entity dedicated to building scalable digital applications, cross-platform software architectures, and independent video games. We leverage cutting-edge frameworks to deliver robust, privacy-first, and performant digital experiences distributed globally through the Apple App Store, Google Play Store, and Steam.
+          Founded in 2026, Falcon 29 LLC is an independent commercial software and video game development company registered in New Mexico, USA. We build performant, privacy-first, and scalable consumer applications distributed across major platforms including the Apple App Store, Google Play Store, and Steam.
         </p>
+      </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="max-w-6xl mx-auto px-6 py-12">
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 sm:p-12">
+        <h2 class="text-2xl font-bold text-white mb-6">Privacy Policy</h2>
+        <div class="text-sm text-slate-400 space-y-4 leading-relaxed max-w-4xl">
+          <p><strong class="text-slate-200">Effective Date:</strong> January 1, 2026</p>
+          <p>Falcon 29 LLC ("we", "our", or "us") is dedicated to protecting user privacy. This policy governs how our applications and games handle data.</p>
+          <p><strong class="text-slate-200">1. Data Collection & Analytics:</strong> Our games and apps operate primarily on local storage architecture. We do not collect or sell personal information without explicit informed consent. Anonymized crash logs or telemetry may be collected strictly to maintain application stability.</p>
+          <p><strong class="text-slate-200">2. Third-Party Services:</strong> Distribution and platform features (such as Apple Game Center, In-App Purchases, or CloudKit) are governed by Apple's Privacy Policy.</p>
+          <p><strong class="text-slate-200">3. Contact for Inquiries:</strong> If you have questions regarding our data practices, contact us at <a href="mailto:contact@falcon29.com" class="text-indigo-400 underline">contact@falcon29.com</a>.</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer & Support -->
   <footer id="contact" class="border-t border-slate-800 bg-slate-950 py-12 text-xs text-slate-500">
     <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
       <div>
         <p class="font-bold text-slate-300 text-sm">Falcon 29 LLC</p>
         <p class="mt-1">Registered Entity in New Mexico, USA</p>
-        <p class="mt-0.5 text-slate-500">[Registered Agent Adresini Buraya Yaz]</p>
+        <p class="mt-0.5 text-slate-500">Support: <a href="mailto:contact@falcon29.com" class="text-indigo-400 hover:underline">contact@falcon29.com</a></p>
       </div>
       <div class="flex flex-col md:items-end gap-2">
-        <p>Inquiries: <a href="mailto:[iletisim@epostan.com]" class="text-indigo-400 hover:underline">[iletisim@epostan.com]</a></p>
-        <div class="flex items-center gap-4 mt-1">
-          <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')" class="hover:text-slate-300 transition underline">Privacy Policy</button>
+        <div class="flex items-center gap-4">
+          <a href="#privacy" class="hover:text-slate-300 transition underline">Privacy Policy</a>
           <span>•</span>
-          <p>© 2026 Falcon 29 LLC. All rights reserved.</p>
+          <a href="mailto:contact@falcon29.com" class="hover:text-slate-300 transition underline">Support</a>
         </div>
+        <p class="mt-1">© 2026 Falcon 29 LLC. All rights reserved.</p>
       </div>
     </div>
   </footer>
-
-  <!-- Privacy Policy Modal -->
-  <div id="privacy-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl">
-      <div class="p-6 border-b border-slate-800 flex items-center justify-between">
-        <h3 class="text-lg font-bold text-white">Privacy Policy</h3>
-        <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="text-slate-400 hover:text-white text-xl font-bold">✕</button>
-      </div>
-      <div class="p-6 overflow-y-auto text-sm text-slate-300 space-y-4">
-        <p><strong>Effective Date:</strong> January 1, 2026</p>
-        <p>Falcon 29 LLC ("we", "our", or "us") respects your privacy. This policy explains how our applications and games handle user data.</p>
-        <p><strong>1. Data Collection:</strong> We do not collect personally identifiable information without explicit user consent. Our applications are designed with local-first and privacy-centric architectures.</p>
-        <p><strong>2. Third-Party Services:</strong> Our apps and games may utilize third-party analytics and distribution platforms (e.g., Apple App Store, Google Play Services) governed by their respective privacy policies.</p>
-        <p><strong>3. Contact:</strong> For any privacy-related inquiries, please reach out via our contact email.</p>
-      </div>
-      <div class="p-4 border-t border-slate-800 bg-slate-900/50 flex justify-end">
-        <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-semibold transition">Close</button>
-      </div>
-    </div>
-  </div>
 
 </body>
 </html>
