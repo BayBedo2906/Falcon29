@@ -1,161 +1,185 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Falcon 29 LLC | Software & Game Development</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Falcon 29 LLC — Software &amp; Game Development Studio</title>
+<meta name="description" content="Falcon 29 LLC is an independent software and game development studio registered in New Mexico, USA, building cross-platform apps and indie games.">
+<meta name="theme-color" content="#020617">
+<meta property="og:title" content="Falcon 29 LLC — Software &amp; Game Development Studio">
+<meta property="og:description" content="Independent studio building cross-platform apps and indie games for iOS, Android, PC and Steam.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Falcon 29 LLC">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://falcon29.com/">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{color-scheme:dark}
+  html{background:#020617}
+  body{font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#020617}
+  html[dir="rtl"] body{font-family:'Noto Sans Arabic','Plus Jakarta Sans',system-ui,Arial,sans-serif}
+  .glow{background:radial-gradient(60% 60% at 50% 0%,rgba(79,70,229,.28),transparent 70%)}
+  section[id]{scroll-margin-top:5rem}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Falcon 29 LLC","url":"https://falcon29.com","email":"contact@falcon29.com","foundingDate":"2026-07","address":{"@type":"PostalAddress","addressRegion":"NM","addressCountry":"US"},"description":"Independent software and game development studio."}
+</script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-600 selection:text-white">
+<body class="text-slate-100 min-h-screen flex flex-col selection:bg-indigo-600 selection:text-white">
 
-  <!-- Navigation -->
-  <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
-          F
-        </div>
-        <span class="text-lg font-bold tracking-tight text-white">Falcon 29 <span class="text-indigo-400 text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950/80 border border-indigo-800/60 ml-1">LLC</span></span>
-      </div>
-      <nav class="space-x-8 text-sm text-slate-400 font-medium">
-        <a href="#products" class="hover:text-white transition">Products</a>
-        <a href="#about" class="hover:text-white transition">About</a>
-        <a href="#privacy" class="hover:text-white transition">Privacy</a>
-        <a href="#contact" class="hover:text-white transition">Support</a>
-      </nav>
+<header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-2 shrink-0">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">F</div>
+      <span class="text-lg font-bold tracking-tight text-white">Falcon 29 <span class="text-indigo-400 text-xs font-semibold px-2 py-0.5 rounded bg-indigo-950/80 border border-indigo-800/60">LLC</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-slate-400 font-medium" aria-label="Main">
+      <a href="#products" class="hover:text-white transition" data-i="nav1"></a>
+      <a href="#about" class="hover:text-white transition" data-i="nav2"></a>
+      <a href="#privacy" class="hover:text-white transition" data-i="nav3"></a>
+      <a href="#terms" class="hover:text-white transition" data-i="nav4"></a>
+      <a href="#contact" class="rounded-lg bg-indigo-600 px-3 py-1.5 text-white hover:bg-indigo-500 transition" data-i="nav5"></a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <select id="lang" aria-label="Language" class="rounded-lg border border-slate-700 bg-slate-900 px-2 py-1.5 text-xs text-slate-300">
+        <option value="en">English</option><option value="zh">中文</option><option value="hi">हिन्दी</option><option value="es">Español</option><option value="ar">العربية</option><option value="tr">Türkçe</option>
+      </select>
+      <button id="navBtn" class="md:hidden rounded-lg border border-slate-700 px-3 py-1.5 text-sm text-slate-300" aria-expanded="false" aria-controls="mobileNav">☰</button>
     </div>
-  </header>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-slate-800 bg-slate-950 px-6 py-4 text-sm text-slate-300 space-y-3" aria-label="Mobile">
+    <a href="#products" class="block" data-i="nav1"></a><a href="#about" class="block" data-i="nav2"></a><a href="#privacy" class="block" data-i="nav3"></a><a href="#terms" class="block" data-i="nav4"></a><a href="#contact" class="block" data-i="nav5"></a>
+  </nav>
+</header>
 
-  <!-- Hero Section -->
-  <main>
-    <section class="max-w-5xl mx-auto px-6 pt-24 pb-16 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-950/50 border border-indigo-800/40 text-indigo-300 rounded-full text-xs font-semibold uppercase tracking-wider mb-8">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        Independent Software & Game Studio
-      </div>
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
-        Building High-Performance Apps & Immersive Games
-      </h1>
-      <p class="mt-6 text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-        Falcon 29 LLC is an independent digital development studio registered in New Mexico, focused on crafting scalable cross-platform applications and engaging indie games for global audiences.
-      </p>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="max-w-6xl mx-auto px-6 py-12">
-      <div class="flex items-center justify-between mb-8 border-b border-slate-800/80 pb-4">
-        <div>
-          <h2 class="text-2xl font-bold tracking-tight text-white">Featured Projects</h2>
-          <p class="text-sm text-slate-400 mt-1">Our core application and game ecosystem</p>
-        </div>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Product 1 -->
-        <div class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold mb-4 group-hover:scale-105 transition">
-              FT
-            </div>
-            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Productivity Application</span>
-            <h3 class="text-xl font-bold text-white mt-1">FractalTask</h3>
-            <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-              A modern workflow and routine management application built with Flutter, focused on local-network sync and distraction-free task architecture.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-500 font-medium">
-            <span>Target Platforms:</span>
-            <span class="text-slate-300 font-semibold">iOS • Android</span>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold mb-4 group-hover:scale-105 transition">
-              TL
-            </div>
-            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Indie Mobile Game</span>
-            <h3 class="text-xl font-bold text-white mt-1">Tilt</h3>
-            <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-              A minimalistic 2D number-merging puzzle game designed with intuitive touch physics, adaptive difficulty, and modern mobile gameplay loops.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-500 font-medium">
-            <span>Target Platforms:</span>
-            <span class="text-slate-300 font-semibold">iOS • Android</span>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold mb-4 group-hover:scale-105 transition">
-              BA
-            </div>
-            <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Strategy Game</span>
-            <h3 class="text-xl font-bold text-white mt-1">Bidder Arena</h3>
-            <p class="mt-3 text-sm text-slate-400 leading-relaxed">
-              A tactical offline auto-battler built in Godot Engine, blending strategic bidding dynamics with algorithmic combat systems.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-500 font-medium">
-            <span>Target Platforms:</span>
-            <span class="text-slate-300 font-semibold">PC • Mobile</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="max-w-6xl mx-auto px-6 py-12">
-      <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 sm:p-12">
-        <h2 class="text-2xl font-bold text-white">About the Studio</h2>
-        <p class="mt-4 text-slate-400 text-sm leading-relaxed max-w-3xl">
-          Founded in 2026, Falcon 29 LLC is an independent commercial software and video game development company registered in New Mexico, USA. We build performant, privacy-first, and scalable consumer applications distributed across major platforms including the Apple App Store, Google Play Store, and Steam.
-        </p>
-      </div>
-    </section>
-
-    <!-- Privacy Policy Section -->
-    <section id="privacy" class="max-w-6xl mx-auto px-6 py-12">
-      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 sm:p-12">
-        <h2 class="text-2xl font-bold text-white mb-6">Privacy Policy</h2>
-        <div class="text-sm text-slate-400 space-y-4 leading-relaxed max-w-4xl">
-          <p><strong class="text-slate-200">Effective Date:</strong> January 1, 2026</p>
-          <p>Falcon 29 LLC ("we", "our", or "us") is dedicated to protecting user privacy. This policy governs how our applications and games handle data.</p>
-          <p><strong class="text-slate-200">1. Data Collection & Analytics:</strong> Our games and apps operate primarily on local storage architecture. We do not collect or sell personal information without explicit informed consent. Anonymized crash logs or telemetry may be collected strictly to maintain application stability.</p>
-          <p><strong class="text-slate-200">2. Third-Party Services:</strong> Distribution and platform features (such as Apple Game Center, In-App Purchases, or CloudKit) are governed by Apple's Privacy Policy.</p>
-          <p><strong class="text-slate-200">3. Contact for Inquiries:</strong> If you have questions regarding our data practices, contact us at <a href="mailto:contact@falcon29.com" class="text-indigo-400 underline">contact@falcon29.com</a>.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer & Support -->
-  <footer id="contact" class="border-t border-slate-800 bg-slate-950 py-12 text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-      <div>
-        <p class="font-bold text-slate-300 text-sm">Falcon 29 LLC</p>
-        <p class="mt-1">Registered Entity in New Mexico, USA</p>
-        <p class="mt-0.5 text-slate-500">Support: <a href="mailto:contact@falcon29.com" class="text-indigo-400 hover:underline">contact@falcon29.com</a></p>
-      </div>
-      <div class="flex flex-col md:items-end gap-2">
-        <div class="flex items-center gap-4">
-          <a href="#privacy" class="hover:text-slate-300 transition underline">Privacy Policy</a>
-          <span>•</span>
-          <a href="mailto:contact@falcon29.com" class="hover:text-slate-300 transition underline">Support</a>
-        </div>
-        <p class="mt-1">© 2026 Falcon 29 LLC. All rights reserved.</p>
-      </div>
+<main class="flex-1">
+<section id="top" class="relative">
+  <div class="glow absolute inset-x-0 top-0 h-80 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative max-w-5xl mx-auto px-6 pt-20 pb-14 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-950/50 border border-indigo-800/40 text-indigo-300 rounded-full text-xs font-semibold uppercase tracking-wider mb-8">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span data-i="badge"></span>
     </div>
-  </footer>
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight" data-i="h1"></h1>
+    <p class="mt-6 text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed" data-i="sub"></p>
+    <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#products" class="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/20" data-i="cta1"></a>
+      <a href="#contact" class="rounded-xl border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 hover:border-slate-500 hover:text-white transition" data-i="cta2"></a>
+    </div>
+    <dl class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-start">
+      <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-4"><dt class="text-xs text-slate-500 uppercase tracking-wider" data-i="s1"></dt><dd class="mt-1 text-xl font-bold text-white" data-i="s1v"></dd></div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-4"><dt class="text-xs text-slate-500 uppercase tracking-wider" data-i="s2"></dt><dd class="mt-1 text-xl font-bold text-white">3</dd></div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-4"><dt class="text-xs text-slate-500 uppercase tracking-wider" data-i="s3"></dt><dd class="mt-1 text-xl font-bold text-white">4</dd></div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-4"><dt class="text-xs text-slate-500 uppercase tracking-wider" data-i="s4"></dt><dd class="mt-1 text-xl font-bold text-white" data-i="s4v"></dd></div>
+    </dl>
+  </div>
+</section>
 
+<section id="products" class="max-w-6xl mx-auto px-6 py-14">
+  <div class="mb-8 border-b border-slate-800/80 pb-4">
+    <h2 class="text-2xl font-bold tracking-tight text-white" data-i="pt"></h2>
+    <p class="text-sm text-slate-400 mt-1" data-i="ps"></p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="cards"></div>
+</section>
+
+<section id="about" class="max-w-6xl mx-auto px-6 py-14">
+  <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 sm:p-12 grid gap-10 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-bold text-white" data-i="at"></h2>
+      <p class="mt-4 text-slate-400 text-sm leading-relaxed" data-i="ap1"></p>
+      <p class="mt-3 text-slate-400 text-sm leading-relaxed" data-i="ap2"></p>
+    </div>
+    <ul class="space-y-4 text-sm" id="vals"></ul>
+  </div>
+</section>
+
+<section id="privacy" class="max-w-6xl mx-auto px-6 py-14">
+  <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 sm:p-12">
+    <h2 class="text-2xl font-bold text-white" data-i="nav3"></h2>
+    <p class="mt-2 text-xs text-slate-500" data-i="dates"></p>
+    <div class="mt-6 text-sm text-slate-400 space-y-5 leading-relaxed max-w-4xl" id="privBody"></div>
+  </div>
+</section>
+
+<section id="terms" class="max-w-6xl mx-auto px-6 py-14">
+  <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 sm:p-12">
+    <h2 class="text-2xl font-bold text-white" data-i="nav4"></h2>
+    <p class="mt-2 text-xs text-slate-500" data-i="dates"></p>
+    <div class="mt-6 text-sm text-slate-400 space-y-5 leading-relaxed max-w-4xl" id="termBody"></div>
+  </div>
+</section>
+
+<section id="contact" class="max-w-6xl mx-auto px-6 py-14">
+  <div class="rounded-2xl border border-indigo-800/50 bg-indigo-950/30 p-8 sm:p-12 text-center">
+    <h2 class="text-2xl font-bold text-white" data-i="ct"></h2>
+    <p class="mt-3 text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed" data-i="cs"></p>
+    <a href="mailto:contact@falcon29.com" class="mt-7 inline-block rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-500 transition">contact@falcon29.com</a>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800 bg-slate-950 py-12 text-xs text-slate-500">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div>
+      <p class="font-bold text-slate-300 text-sm">Falcon 29 LLC</p>
+      <p class="mt-1" data-i="fr"></p>
+      <p class="mt-0.5"><span data-i="nav5"></span>: <a href="mailto:contact@falcon29.com" class="text-indigo-400 hover:underline">contact@falcon29.com</a></p>
+    </div>
+    <div class="flex flex-col md:items-end gap-2">
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#products" class="hover:text-slate-300" data-i="nav1"></a><a href="#privacy" class="hover:text-slate-300" data-i="nav3"></a><a href="#terms" class="hover:text-slate-300" data-i="nav4"></a><a href="#contact" class="hover:text-slate-300" data-i="nav5"></a>
+      </div>
+      <p class="mt-1">© 2026 Falcon 29 LLC. <span data-i="rights"></span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+var EN={nav1:"Products",nav2:"About",nav3:"Privacy Policy",nav4:"Terms of Use",nav5:"Support",badge:"Independent Software & Game Studio",h1:"Building High-Performance Apps & Immersive Games",sub:"Falcon 29 LLC is an independent digital development studio registered in New Mexico, USA, crafting scalable cross-platform applications and engaging indie games for global audiences.",cta1:"Explore our products",cta2:"Contact support",s1:"Founded",s1v:"July 2026",s2:"Projects",s3:"Platforms",s4:"Data policy",s4v:"Local-first",pt:"Featured Projects",ps:"Our core application and game ecosystem",at:"About the Studio",ap1:"Established in July 2026, Falcon 29 LLC is an independent commercial software and video game development company registered in the State of New Mexico, USA. We build performant, privacy-first and scalable consumer applications distributed across the Apple App Store, Google Play and Steam.",ap2:"We keep teams small and release cycles short, shipping products we would want to use ourselves.",ct:"Support & Contact",cs:"Bug reports, purchase questions, privacy requests or business enquiries — we answer every message, usually within two business days.",fr:"Registered entity in New Mexico, USA",rights:"All rights reserved.",dates:"Effective date: July 1, 2026 · Last updated: July 1, 2026",vals:[["Privacy-first engineering","Local storage by default; no selling of personal data."],["Cross-platform delivery","One codebase, native feel on iOS, Android and desktop."],["Long-term support","Direct email support and regular stability updates."]],cards:[["FT","Productivity Application","FractalTask","A modern workflow and routine management app built with Flutter, focused on local-network sync and distraction-free task architecture.","In development","iOS • Android",["Flutter","Offline-first","Local sync"]],["TL","Indie Mobile Game","Tilt","A minimalistic 2D number-merging puzzle game with intuitive touch physics, adaptive difficulty and modern mobile gameplay loops.","In development","iOS • Android",["Puzzle","Single player","Ad-supported"]],["BA","Strategy Game","Bidder Arena","A tactical offline auto-battler built in Godot Engine, blending strategic bidding dynamics with algorithmic combat systems.","Prototype","PC • Mobile",["Godot","Offline","Auto-battler"]]],
+priv:[["1. Who we are","Falcon 29 LLC (\"Falcon 29\", \"we\", \"our\", \"us\") is a limited liability company registered in the State of New Mexico, USA, and is the data controller for the personal data described in this policy. This policy applies to our website, mobile applications and games (together, the \"Services\")."],["2. Categories of data we process","Data you provide: the content you create inside an app (tasks, routines, save files, settings) and any information you include when you contact support, such as your email address and message. Data collected automatically: device model, operating system version, app version, language and region, crash stack traces, aggregated feature-usage counters, and — in ad-supported products — your device advertising identifier, IP address and ad interaction events (see section 5). Data from platforms: purchase validation receipts and subscription status supplied by Apple, Google or Valve. We do not process special-category data, precise geolocation, contacts, photos, microphone or camera data unless a specific feature requires it and you grant permission."],["3. Local-first architecture","Our applications and games operate primarily on a local-storage architecture. Content you create is stored on your device and is not transmitted to us unless you explicitly enable a sync or cloud feature. Where local-network sync is offered, data travels directly between your own devices and does not pass through our servers. Ad-supported products additionally require a network connection to request advertisements from our advertising partners."],["4. Purposes and legal bases","We process data to provide and maintain the Services (performance of a contract), to diagnose crashes and improve stability and performance (legitimate interests), to respond to support requests (legitimate interests or performance of a contract), to process and validate purchases (performance of a contract), and to comply with legal obligations. Where we rely on consent, for example for optional analytics, you may withdraw it at any time in the app settings without affecting the lawfulness of prior processing."],["5. Advertising and identifiers","Some of our products are free and ad-supported. In those products, advertisements are delivered by third-party advertising networks whose SDKs may process your device advertising identifier (IDFA on iOS, Advertising ID on Android), IP address, approximate region derived from the IP address, device and app information, and ad interaction events such as impressions and clicks. On iOS we present Apple's App Tracking Transparency prompt before any tracking identifier is used; if you decline, only contextual, non-personalised advertising is shown. In the EEA, the UK and T\u00fcrkiye we request consent through a consent management platform before personalised advertising is enabled, and you can change that choice at any time in the app's privacy settings. Under the CCPA/CPRA, the use of advertising identifiers for personalised ads may qualify as \"sharing\" for cross-context behavioural advertising; California residents can opt out using the \"Do Not Sell or Share My Personal Information\" control in the app settings or by emailing us. We do not sell personal information for money. Where a product offers an ad-free purchase or subscription, advertising is disabled once the purchase is validated."],["6. Third-party processors","We rely on a limited set of providers acting on our behalf or as independent controllers: Apple (App Store, In-App Purchase, Game Center, CloudKit), Google (Google Play, Play Billing, Play Integrity), Valve (Steam), advertising and monetisation partners such as Google AdMob or Ad Manager, Unity Ads and AppLovin, and crash-reporting and hosting providers. Advertising partners act as independent controllers for the data collected through their SDKs, and their own privacy policies govern that processing. Their processing is governed by their own privacy policies. We enter into data-processing agreements with our processors where required by law."],["7. International transfers","Our operations and some providers are located in the United States. Where personal data of users in the European Economic Area, the United Kingdom, Switzerland or Türkiye is transferred outside those jurisdictions, we rely on Standard Contractual Clauses or an equivalent lawful transfer mechanism, together with supplementary technical measures such as encryption in transit."],["8. Retention","Support correspondence is retained for up to 24 months after the request is closed. Diagnostic and crash data is retained for up to 12 months in aggregated or anonymised form. Purchase records are retained for the period required by tax and accounting law. Locally stored content is retained on your device until you delete it or uninstall the app."],["9. Your rights","Subject to applicable law, including the GDPR, the UK GDPR, the CCPA/CPRA and the Turkish Personal Data Protection Law (KVKK No. 6698), you may request access to your personal data, correction of inaccurate data, erasure, restriction of or objection to processing, portability in a machine-readable format, and withdrawal of consent. Requests can be sent to contact@falcon29.com and are answered within 30 days, free of charge. You also have the right to lodge a complaint with your local supervisory authority."],["10. Security","We apply reasonable technical and organisational measures, including TLS encryption in transit, access controls on administrative systems, and minimisation of the data we collect. No method of transmission or storage is completely secure, and we cannot guarantee absolute security. In the event of a personal data breach likely to result in a risk to your rights, we will notify the competent authority and, where required, affected users without undue delay."],["11. Children","Our products are not directed to children under 13 (or under 16 where local law sets a higher age), and we do not knowingly collect personal data from them. Where an app is listed in a children's category or is directed to mixed audiences, we disable personalised advertising and instruct our advertising partners to serve only non-personalised, age-appropriate ads, in line with COPPA, the GDPR and store policies. If you believe a child has provided us personal data, contact us and we will delete it promptly."],["12. Cookies and website analytics","This website uses only strictly necessary storage required to remember your language preference. We do not use advertising or tracking cookies on this site."],["13. Changes to this policy","We may update this policy to reflect changes in our products or in applicable law. Material changes will be published on this page with a new effective date and, where required, announced in-app before taking effect."],["14. Contact","Privacy questions and rights requests: contact@falcon29.com. Postal correspondence can be requested by email."]],
+term:[["1. Acceptance","These Terms of Use form a binding agreement between you and Falcon 29 LLC governing your use of our website, applications and games. By downloading, installing or using the Services you accept these terms. If you do not accept them, do not use the Services."],["2. Licence","Subject to your compliance with these terms, Falcon 29 LLC grants you a personal, limited, non-exclusive, non-transferable and revocable licence to install and use our products for your own non-commercial purposes, in accordance with the rules of the store from which you obtained them. No ownership rights are transferred."],["3. Restrictions","You may not reverse engineer, decompile, disassemble, modify, translate or create derivative works of our software, except to the extent such restriction is prohibited by applicable law; distribute, rent, lease, sublicense, resell or commercially exploit the Services; circumvent technical protection or licensing measures; use cheats, bots, automation or exploits that affect fairness or stability; or use the Services in a way that violates law or infringes third-party rights."],["4. User content","You retain ownership of content you create with our products. Where a feature lets you submit content to us or make it publicly available, you grant Falcon 29 LLC a worldwide, non-exclusive, royalty-free licence to host, reproduce and display that content solely to operate and improve the feature. You are responsible for ensuring you hold the rights to any content you submit."],["5. Purchases, subscriptions and virtual items","All purchases are processed by the distributing platform (Apple, Google or Valve) and are subject to that platform's terms and refund policy. Virtual items and in-game currency are licensed, not sold, have no monetary value outside the product, and cannot be exchanged for cash. Subscriptions renew automatically until cancelled in your platform account settings. Where a product offers an ad-free upgrade, that purchase removes advertising for the account or device on which it was validated."],["6. Refunds","Because payment is handled by the stores, refund requests must be submitted to Apple, Google or Valve. Where mandatory consumer law grants you a statutory right of withdrawal, that right is unaffected by these terms."],["7. Availability and updates","We may modify, suspend or discontinue any part of the Services, including online features, with reasonable notice where practicable. We may release updates that are required for continued use. Offline functionality of a purchased product will continue to work on supported devices."],["8. Intellectual property","All software, artwork, audio, trademarks, names and designs in the Services are owned by Falcon 29 LLC or its licensors and are protected by copyright and trademark law. Nothing in these terms grants you rights to our branding."],["9. Disclaimer of warranties","The Services are provided \"as is\" and \"as available\" without warranties of any kind, whether express, implied or statutory, including merchantability, fitness for a particular purpose and non-infringement. Some jurisdictions do not allow such exclusions, in which case they apply to the maximum extent permitted."],["10. Limitation of liability","To the maximum extent permitted by law, Falcon 29 LLC is not liable for indirect, incidental, special, consequential or punitive damages, or for loss of data, profits or goodwill. Our aggregate liability arising out of the Services is limited to the amount you paid for the relevant product in the twelve months preceding the claim. Nothing limits liability that cannot lawfully be limited, such as liability for fraud, gross negligence, or death or personal injury caused by negligence."],["11. Indemnity","You agree to indemnify and hold Falcon 29 LLC harmless from claims, damages and reasonable legal costs arising from your breach of these terms or your unlawful use of the Services."],["12. Termination","We may suspend or terminate your licence if you materially breach these terms. You may terminate at any time by ceasing use and uninstalling the products. Sections that by their nature survive termination, including intellectual property, disclaimers, limitation of liability and governing law, remain in effect."],["13. Governing law and disputes","These terms are governed by the laws of the State of New Mexico, USA, excluding its conflict-of-law rules. Disputes are subject to the exclusive jurisdiction of the state and federal courts located in New Mexico. If you are a consumer resident in the EEA, the UK or Türkiye, you retain the protection of the mandatory consumer provisions and the right to bring proceedings in the courts of your place of residence."],["14. Changes and contact","We may amend these terms; the current version is always published on this page with its effective date. Continued use after the effective date constitutes acceptance. Questions: contact@falcon29.com."]]};
+
+var T={en:EN,
+zh:Object.assign({},EN,{nav1:"产品",nav2:"关于",nav3:"隐私政策",nav4:"使用条款",nav5:"支持",badge:"独立软件与游戏工作室",h1:"打造高性能应用与沉浸式游戏",sub:"Falcon 29 LLC 是一家在美国新墨西哥州注册的独立数字开发工作室，为全球用户打造可扩展的跨平台应用和独立游戏。",cta1:"查看产品",cta2:"联系支持",s1:"成立时间",s1v:"2026 年 7 月",s2:"项目",s3:"平台",s4:"数据策略",s4v:"本地优先",pt:"精选项目",ps:"我们的核心应用与游戏生态",at:"关于工作室",ap1:"Falcon 29 LLC 成立于 2026 年 7 月，是一家在美国新墨西哥州注册的独立商业软件与电子游戏开发公司。我们开发高性能、隐私优先且可扩展的消费级应用，发行于 App Store、Google Play 和 Steam。",ap2:"我们保持小团队和短发布周期，只做我们自己也愿意使用的产品。",ct:"支持与联系",cs:"错误报告、购买问题、隐私请求或商务合作——我们会回复每一封邮件，通常在两个工作日内。",fr:"于美国新墨西哥州注册的实体",rights:"保留所有权利。",dates:"生效日期：2026 年 7 月 1 日"}),
+hi:Object.assign({},EN,{nav1:"उत्पाद",nav2:"परिचय",nav3:"गोपनीयता नीति",nav4:"उपयोग की शर्तें",nav5:"सहायता",badge:"स्वतंत्र सॉफ़्टवेयर और गेम स्टूडियो",h1:"उच्च-प्रदर्शन ऐप्स और सजीव गेम्स का निर्माण",sub:"Falcon 29 LLC न्यू मैक्सिको, अमेरिका में पंजीकृत एक स्वतंत्र डिजिटल डेवलपमेंट स्टूडियो है, जो वैश्विक उपयोगकर्ताओं के लिए क्रॉस-प्लेटफ़ॉर्म ऐप्स और इंडी गेम्स बनाता है।",cta1:"उत्पाद देखें",cta2:"सहायता से संपर्क करें",s1:"स्थापना",s1v:"जुलाई 2026",s2:"परियोजनाएँ",s3:"प्लेटफ़ॉर्म",s4:"डेटा नीति",s4v:"लोकल-फ़र्स्ट",pt:"प्रमुख परियोजनाएँ",ps:"हमारा मुख्य ऐप और गेम पारिस्थितिकी तंत्र",at:"स्टूडियो के बारे में",ap1:"जुलाई 2026 में स्थापित, Falcon 29 LLC न्यू मैक्सिको, अमेरिका में पंजीकृत एक स्वतंत्र व्यावसायिक सॉफ़्टवेयर और वीडियो गेम डेवलपमेंट कंपनी है। हम App Store, Google Play और Steam पर वितरित तेज़, गोपनीयता-प्रथम और स्केलेबल ऐप्स बनाते हैं।",ap2:"हम छोटी टीमें और छोटे रिलीज़ चक्र रखते हैं, और वही उत्पाद बनाते हैं जिन्हें हम स्वयं उपयोग करना चाहेंगे।",ct:"सहायता और संपर्क",cs:"बग रिपोर्ट, खरीद संबंधी प्रश्न, गोपनीयता अनुरोध या व्यावसायिक पूछताछ — हम हर संदेश का उत्तर देते हैं, आमतौर पर दो कार्यदिवसों में।",fr:"न्यू मैक्सिको, अमेरिका में पंजीकृत संस्था",rights:"सर्वाधिकार सुरक्षित।",dates:"प्रभावी तिथि: 1 जुलाई 2026"}),
+es:Object.assign({},EN,{nav1:"Productos",nav2:"Nosotros",nav3:"Política de privacidad",nav4:"Términos de uso",nav5:"Soporte",badge:"Estudio independiente de software y videojuegos",h1:"Aplicaciones de alto rendimiento y juegos envolventes",sub:"Falcon 29 LLC es un estudio independiente de desarrollo digital registrado en Nuevo México, EE. UU., que crea aplicaciones multiplataforma escalables y juegos indie para un público global.",cta1:"Ver nuestros productos",cta2:"Contactar con soporte",s1:"Fundación",s1v:"Julio de 2026",s2:"Proyectos",s3:"Plataformas",s4:"Política de datos",s4v:"Local primero",pt:"Proyectos destacados",ps:"Nuestro ecosistema principal de aplicaciones y juegos",at:"Sobre el estudio",ap1:"Constituida en julio de 2026, Falcon 29 LLC es una empresa independiente de desarrollo de software y videojuegos registrada en el estado de Nuevo México, EE. UU. Creamos aplicaciones rápidas, escalables y centradas en la privacidad, distribuidas en App Store, Google Play y Steam.",ap2:"Mantenemos equipos pequeños y ciclos de lanzamiento cortos, y publicamos productos que nosotros mismos querríamos usar.",ct:"Soporte y contacto",cs:"Errores, dudas sobre compras, solicitudes de privacidad o consultas comerciales: respondemos todos los mensajes, normalmente en dos días hábiles.",fr:"Entidad registrada en Nuevo México, EE. UU.",rights:"Todos los derechos reservados.",dates:"Fecha de entrada en vigor: 1 de julio de 2026"}),
+ar:Object.assign({},EN,{nav1:"المنتجات",nav2:"من نحن",nav3:"سياسة الخصوصية",nav4:"شروط الاستخدام",nav5:"الدعم",badge:"استوديو مستقل للبرمجيات والألعاب",h1:"تطبيقات عالية الأداء وألعاب غامرة",sub:"‏Falcon 29 LLC استوديو تطوير رقمي مستقل مُسجَّل في نيومكسيكو بالولايات المتحدة، يبني تطبيقات متعددة المنصات وألعاباً مستقلة لجمهور عالمي.",cta1:"استعرض منتجاتنا",cta2:"تواصل مع الدعم",s1:"التأسيس",s1v:"يوليو 2026",s2:"المشاريع",s3:"المنصات",s4:"سياسة البيانات",s4v:"محلية أولاً",pt:"مشاريع مختارة",ps:"منظومتنا الأساسية من التطبيقات والألعاب",at:"عن الاستوديو",ap1:"تأسست Falcon 29 LLC في يوليو 2026 كشركة مستقلة لتطوير البرمجيات وألعاب الفيديو مُسجَّلة في ولاية نيومكسيكو بالولايات المتحدة. نبني تطبيقات سريعة وقابلة للتوسع تضع الخصوصية أولاً، وتُوزَّع عبر App Store وGoogle Play وSteam.",ap2:"نحافظ على فرق صغيرة ودورات إصدار قصيرة، ونُطلق منتجات نودّ استخدامها بأنفسنا.",ct:"الدعم والتواصل",cs:"بلاغات الأخطاء وأسئلة الشراء وطلبات الخصوصية والاستفسارات التجارية — نردّ على كل رسالة، عادةً خلال يومي عمل.",fr:"كيان مُسجَّل في نيومكسيكو، الولايات المتحدة",rights:"جميع الحقوق محفوظة.",dates:"تاريخ السريان: 1 يوليو 2026"}),
+tr:Object.assign({},EN,{nav1:"Ürünler",nav2:"Hakkımızda",nav3:"Gizlilik Politikası",nav4:"Kullanım Koşulları",nav5:"Destek",badge:"Bağımsız Yazılım ve Oyun Stüdyosu",h1:"Yüksek Performanslı Uygulamalar ve Sürükleyici Oyunlar",sub:"Falcon 29 LLC, ABD'nin New Mexico eyaletinde kayıtlı bağımsız bir dijital geliştirme stüdyosudur; küresel kullanıcılar için ölçeklenebilir çok platformlu uygulamalar ve bağımsız oyunlar geliştirir.",cta1:"Ürünlerimizi inceleyin",cta2:"Destekle iletişime geçin",s1:"Kuruluş",s1v:"Temmuz 2026",s2:"Proje",s3:"Platform",s4:"Veri politikası",s4v:"Yerel öncelikli",pt:"Öne Çıkan Projeler",ps:"Temel uygulama ve oyun ekosistemimiz",at:"Stüdyo Hakkında",ap1:"Temmuz 2026'da kurulan Falcon 29 LLC, ABD'nin New Mexico eyaletinde kayıtlı bağımsız bir ticari yazılım ve video oyunu geliştirme şirketidir. App Store, Google Play ve Steam üzerinden dağıtılan; performanslı, gizlilik önceliği taşıyan ve ölçeklenebilir tüketici uygulamaları geliştiriyoruz.",ap2:"Ekipleri küçük, yayın döngülerini kısa tutuyor ve kendimizin de kullanmak isteyeceği ürünler yayınlıyoruz.",ct:"Destek ve İletişim",cs:"Hata bildirimleri, satın alma soruları, gizlilik talepleri veya iş birliği başvuruları — her mesajı yanıtlıyoruz, genellikle iki iş günü içinde.",fr:"ABD, New Mexico'da kayıtlı şirket",rights:"Tüm hakları saklıdır.",dates:"Yürürlük tarihi: 1 Temmuz 2026 · Son güncelleme: 1 Temmuz 2026",
+vals:[["Gizlilik öncelikli mühendislik","Varsayılan olarak yerel depolama; kişisel veri satışı yok."],["Çok platformlu dağıtım","Tek kod tabanı; iOS, Android ve masaüstünde doğal deneyim."],["Uzun vadeli destek","Doğrudan e-posta desteği ve düzenli kararlılık güncellemeleri."]],
+cards:[["FT","Verimlilik Uygulaması","FractalTask","Flutter ile geliştirilen; yerel ağ senkronizasyonuna ve dikkat dağıtmayan görev mimarisine odaklanan modern iş akışı ve rutin yönetimi uygulaması.","Geliştiriliyor","iOS • Android",["Flutter","Çevrimdışı öncelikli","Yerel senkron"]],["TL","Bağımsız Mobil Oyun","Tilt","Sezgisel dokunma fiziği, uyarlanabilir zorluk ve modern mobil oynanış döngüleriyle tasarlanmış minimalist 2D sayı birleştirme bulmacası.","Geliştiriliyor","iOS • Android",["Bulmaca","Tek oyunculu","Reklam destekli"]],["BA","Strateji Oyunu","Bidder Arena","Godot Engine ile geliştirilen; stratejik teklif verme dinamiklerini algoritmik savaş sistemleriyle birleştiren çevrimdışı taktiksel auto-battler.","Prototip","PC • Mobil",["Godot","Çevrimdışı","Auto-battler"]]],
+priv:[["1. Kim olduğumuz","Falcon 29 LLC (\"Falcon 29\", \"biz\"), ABD'nin New Mexico eyaletinde kayıtlı bir limited şirkettir ve bu politikada tanımlanan kişisel veriler bakımından veri sorumlusudur. Politika; web sitemiz, mobil uygulamalarımız ve oyunlarımız (birlikte \"Hizmetler\") için geçerlidir."],["2. İşlenen veri kategorileri","Sizin sağladığınız veriler: uygulama içinde oluşturduğunuz içerik (görevler, rutinler, kayıt dosyaları, ayarlar) ve destek talebinde ilettiğiniz e-posta adresi ile mesaj içeriği. Otomatik toplanan veriler: cihaz modeli, işletim sistemi ve uygulama sürümü, dil/bölge, çökme kayıtları, toplulaştırılmış kullanım sayaçları ve reklam destekli ürünlerde cihaz reklam tanımlayıcınız, IP adresiniz ile reklam etkileşim olayları (bkz. 5. madde). Platformlardan gelen veriler: Apple, Google veya Valve tarafından sağlanan satın alma doğrulama makbuzları ve abonelik durumu. Özel nitelikli kişisel veri, hassas konum, rehber, fotoğraf, mikrofon veya kamera verisi; ilgili özellik gerektirmedikçe ve izin vermediğiniz sürece işlenmez."],["3. Yerel öncelikli mimari","Uygulama ve oyunlarımız esas olarak yerel depolama mimarisiyle çalışır. Oluşturduğunuz içerik cihazınızda saklanır ve bir senkronizasyon ya da bulut özelliğini açıkça etkinleştirmediğiniz sürece bize aktarılmaz. Yerel ağ senkronizasyonu sunulan yerlerde veri, doğrudan kendi cihazlarınız arasında akar ve sunucularımızdan geçmez. Reklam destekli ürünler ise reklam talep edebilmek için internet bağlantısı gerektirir."],["4. İşleme amaçları ve hukuki sebepler","Verileri; Hizmetleri sunmak ve sürdürmek (sözleşmenin ifası), çökmeleri teşhis edip kararlılık ve performansı iyileştirmek (meşru menfaat), destek taleplerini yanıtlamak, satın almaları doğrulamak (sözleşmenin ifası) ve hukuki yükümlülüklere uymak amacıyla işleriz. Açık rızaya dayandığımız hallerde (örneğin isteğe bağlı analitik), rızanızı uygulama ayarlarından dilediğiniz an geri çekebilirsiniz; bu, önceki işlemenin hukukiliğini etkilemez."],["5. Reklam ve tanımlayıcılar","Ürünlerimizin bir kısmı ücretsiz ve reklam desteklidir. Bu ürünlerde reklamlar üçüncü taraf reklam ağları tarafından sunulur; bu ağların SDK'leri cihaz reklam tanımlayıcınızı (iOS'ta IDFA, Android'de Reklam Kimliği), IP adresinizi, IP'den türetilen yaklaşık bölge bilgisini, cihaz ve uygulama bilgilerini ve gösterim/tıklama gibi reklam etkileşim olaylarını işleyebilir. iOS'ta herhangi bir izleme tanımlayıcısı kullanılmadan önce Apple'ın Uygulama İzleme Şeffaflığı (ATT) izni istenir; izin vermezseniz yalnızca bağlamsal, kişiselleştirilmemiş reklam gösterilir. AEA, Birleşik Krallık ve Türkiye'de kişiselleştirilmiş reklam etkinleştirilmeden önce bir onay yönetim platformu üzerinden açık rızanız alınır; bu tercihinizi uygulama içindeki gizlilik ayarlarından dilediğiniz an değiştirebilirsiniz. CCPA/CPRA kapsamında reklam tanımlayıcılarının kişiselleştirilmiş reklam için kullanılması bağlam ötesi davranışsal reklam amaçlı \"paylaşım\" sayılabilir; Kaliforniya sakinleri uygulama ayarlarındaki \"Do Not Sell or Share My Personal Information\" seçeneğiyle veya bize e-posta göndererek bunu kapatabilir. Kişisel bilgileri para karşılığı satmıyoruz. Bir üründe reklamsız satın alma veya abonelik sunuluyorsa, satın alma doğrulandıktan sonra reklamlar devre dışı bırakılır."],["6. Üçüncü taraf hizmet sağlayıcılar","Sınırlı sayıda sağlayıcıyla çalışırız: Apple (App Store, Uygulama İçi Satın Alma, Game Center, CloudKit), Google (Google Play, Play Billing, Play Integrity), Valve (Steam), Google AdMob/Ad Manager, Unity Ads ve AppLovin gibi reklam ve gelir ortakları ile çökme raporlama ve barındırma sağlayıcıları. Reklam ortakları, SDK'leri aracılığıyla topladıkları veriler bakımından bağımsız veri sorumlusu olarak hareket eder ve bu işleme kendi gizlilik politikalarına tabidir. Bu tarafların işleme faaliyetleri kendi gizlilik politikalarına tabidir. Mevzuatın gerektirdiği hallerde veri işleme sözleşmeleri akdedilir."],["7. Yurt dışına aktarım","Faaliyetlerimiz ve bazı sağlayıcılarımız ABD'dedir. AEA, Birleşik Krallık, İsviçre veya Türkiye'deki kullanıcıların kişisel verileri bu ülkeler dışına aktarıldığında; Standart Sözleşme Hükümleri veya eşdeğer bir hukuki aktarım mekanizması ile aktarım sırasında şifreleme gibi tamamlayıcı teknik tedbirlere dayanırız. KVKK kapsamında aktarım, ilgili mevzuatın öngördüğü şartlara uygun olarak gerçekleştirilir."],["8. Saklama süreleri","Destek yazışmaları, talep kapandıktan sonra en fazla 24 ay saklanır. Teşhis ve çökme verileri toplulaştırılmış veya anonim biçimde en fazla 12 ay saklanır. Satın alma kayıtları vergi ve muhasebe mevzuatının öngördüğü süre boyunca tutulur. Cihazınızda saklanan içerik, siz silene veya uygulamayı kaldırana kadar durur."],["9. Haklarınız","GDPR, UK GDPR, CCPA/CPRA ve 6698 sayılı KVKK dâhil ilgili mevzuat uyarınca; kişisel verilerinize erişme, yanlış verilerin düzeltilmesini isteme, silinmesini veya yok edilmesini talep etme, işlemenin kısıtlanmasını isteme veya işlemeye itiraz etme, verilerinizi makine tarafından okunabilir biçimde taşıma ve rızanızı geri çekme haklarına sahipsiniz. Talepler contact@falcon29.com adresine iletilebilir ve ücretsiz olarak 30 gün içinde yanıtlanır. Ayrıca yetkili denetim makamına (Türkiye'de Kişisel Verileri Koruma Kurulu'na) şikâyette bulunma hakkınız saklıdır."],["10. Güvenlik","Aktarımda TLS şifreleme, yönetim sistemlerinde erişim kontrolleri ve toplanan verinin asgariye indirilmesi dâhil makul teknik ve idari tedbirleri uygularız. Hiçbir aktarım veya depolama yöntemi tümüyle güvenli değildir ve mutlak güvenlik garanti edilemez. Haklarınız bakımından risk doğurabilecek bir veri ihlali halinde, yetkili makamı ve gerekli olduğunda etkilenen kullanıcıları gecikmeksizin bilgilendiririz."],["11. Çocukların gizliliği","Ürünlerimiz 13 yaşın (yerel mevzuatın daha yüksek yaş öngördüğü yerlerde 16 yaşın) altındaki çocuklara yönelik değildir ve onlardan bilerek kişisel veri toplamayız. Bir uygulama mağazada çocuk kategorisinde listeleniyorsa veya karma kitleye yönelikse, kişiselleştirilmiş reklamı devre dışı bırakır ve reklam ortaklarımıza yalnızca kişiselleştirilmemiş, yaşa uygun reklam sunmaları talimatını veririz (COPPA, GDPR ve mağaza politikalarına uygun olarak). Bir çocuğun bize kişisel veri sağladığını düşünüyorsanız bizimle iletişime geçin; veriyi derhal sileriz."],["12. Çerezler ve web sitesi analitiği","Bu web sitesi yalnızca dil tercihinizi hatırlamak için gereken zorunlu depolamayı kullanır. Sitede reklam veya izleme çerezi kullanılmaz."],["13. Politikadaki değişiklikler","Ürünlerimizdeki veya mevzuattaki değişiklikleri yansıtmak için bu politikayı güncelleyebiliriz. Esaslı değişiklikler yeni yürürlük tarihiyle bu sayfada yayımlanır ve gerekli hallerde yürürlüğe girmeden önce uygulama içinde duyurulur."],["14. İletişim","Gizlilik soruları ve hak talepleri: contact@falcon29.com. Posta yoluyla yazışma için e-posta ile talepte bulunabilirsiniz."]],
+term:[["1. Kabul","Bu Kullanım Koşulları, web sitemizi, uygulamalarımızı ve oyunlarımızı kullanımınızı düzenleyen, sizinle Falcon 29 LLC arasında bağlayıcı bir sözleşmedir. Hizmetleri indirerek, kurarak veya kullanarak bu koşulları kabul etmiş olursunuz. Kabul etmiyorsanız Hizmetleri kullanmayınız."],["2. Lisans","Bu koşullara uymanız kaydıyla Falcon 29 LLC, ürünlerimizi ticari olmayan kişisel amaçlarla ve edindiğiniz mağazanın kurallarına uygun şekilde kurup kullanmanız için size kişisel, sınırlı, münhasır olmayan, devredilemez ve geri alınabilir bir lisans verir. Hiçbir mülkiyet hakkı devredilmez."],["3. Yasaklar","Yazılımımız üzerinde tersine mühendislik, kaynak koda dönüştürme, ayrıştırma, değiştirme veya türev eser oluşturma (ilgili mevzuatın bu kısıtlamayı yasakladığı ölçü hariç); Hizmetleri dağıtma, kiralama, alt lisanslama, yeniden satma veya ticari olarak sömürme; teknik koruma ve lisanslama önlemlerini aşma; adaleti veya kararlılığı etkileyen hile, bot, otomasyon ve açık kullanımı; Hizmetleri hukuka aykırı veya üçüncü kişilerin haklarını ihlal edecek şekilde kullanma yasaktır."],["4. Kullanıcı içeriği","Ürünlerimizle oluşturduğunuz içeriğin mülkiyeti sizde kalır. Bir özellik içeriğinizi bize göndermenize veya herkese açık hale getirmenize imkân tanıyorsa, yalnızca o özelliği işletmek ve iyileştirmek amacıyla Falcon 29 LLC'ye dünya çapında, münhasır olmayan, bedelsiz bir barındırma, çoğaltma ve görüntüleme lisansı vermiş olursunuz. Gönderdiğiniz içeriğe ilişkin haklara sahip olmak sizin sorumluluğunuzdadır."],["5. Satın almalar, abonelikler ve sanal öğeler","Tüm satın almalar dağıtım platformu (Apple, Google veya Valve) tarafından işlenir ve ilgili platformun koşulları ile iade politikasına tabidir. Sanal öğeler ve oyun içi para satılmaz, lisanslanır; ürün dışında parasal değeri yoktur ve nakde çevrilemez. Abonelikler, platform hesabı ayarlarından iptal edilene kadar otomatik yenilenir. Bir üründe reklamsız yükseltme sunuluyorsa, bu satın alma doğrulandığı hesap veya cihazda reklamları kaldırır."],["6. İadeler","Ödeme mağazalar tarafından yönetildiğinden iade talepleri Apple, Google veya Valve'a iletilmelidir. Emredici tüketici mevzuatının size cayma hakkı tanıdığı hallerde bu hak saklıdır; işbu koşullar bu hakkı sınırlamaz."],["7. Erişilebilirlik ve güncellemeler","Hizmetlerin herhangi bir bölümünü, çevrimiçi özellikler dâhil, mümkün olduğunda makul bildirimle değiştirebilir, askıya alabilir veya sonlandırabiliriz. Kullanımın sürmesi için gerekli güncellemeler yayımlanabilir. Satın alınan bir ürünün çevrimdışı işlevleri desteklenen cihazlarda çalışmaya devam eder."],["8. Fikri mülkiyet","Hizmetlerdeki tüm yazılım, görsel, ses, marka, isim ve tasarımlar Falcon 29 LLC'ye veya lisans verenlerine aittir; telif hakkı ve marka mevzuatıyla korunur. Bu koşullar size markamıza ilişkin bir hak vermez."],["9. Garanti reddi","Hizmetler, açık, zımni veya kanuni hiçbir garanti verilmeksizin \"olduğu gibi\" ve \"mevcut haliyle\" sunulur; ticari elverişlilik, belirli bir amaca uygunluk ve ihlal etmeme garantileri dâhil. Bazı ülkelerde bu tür istisnalara izin verilmez; bu hallerde sınırlama mevzuatın izin verdiği azami ölçüde uygulanır."],["10. Sorumluluğun sınırlandırılması","Mevzuatın izin verdiği azami ölçüde Falcon 29 LLC; dolaylı, arızi, özel, netice kabilinden veya cezai zararlardan ya da veri, kâr veya itibar kaybından sorumlu değildir. Hizmetlerden doğan toplam sorumluluğumuz, talebin doğduğu tarihten önceki on iki ayda ilgili ürün için ödediğiniz tutarla sınırlıdır. Hile, ağır ihmal ya da ihmalden kaynaklanan ölüm veya bedensel zarar gibi hukuken sınırlanamayan sorumluluklar saklıdır."],["11. Tazminat","Bu koşulları ihlaliniz veya Hizmetleri hukuka aykırı kullanımınızdan doğan talepler, zararlar ve makul yasal masraflar bakımından Falcon 29 LLC'yi tazmin etmeyi ve zarardan korumayı kabul edersiniz."],["12. Fesih","Koşulları esaslı şekilde ihlal etmeniz halinde lisansınızı askıya alabilir veya sonlandırabiliriz. Siz de kullanımı bırakıp ürünleri kaldırarak dilediğiniz an sona erdirebilirsiniz. Fikri mülkiyet, garanti reddi, sorumluluk sınırlaması ve uygulanacak hukuk gibi nitelikleri gereği fesihten sonra da geçerli kalan hükümler yürürlükte kalır."],["13. Uygulanacak hukuk ve uyuşmazlıklar","Bu koşullar, kanunlar ihtilafı kuralları hariç olmak üzere ABD New Mexico eyaleti hukukuna tabidir. Uyuşmazlıklarda New Mexico'daki eyalet ve federal mahkemeler münhasıran yetkilidir. AEA, Birleşik Krallık veya Türkiye'de mukim tüketiciler, emredici tüketici hükümlerinin korumasından yararlanmaya ve yerleşim yerlerindeki mahkemelerde (Türkiye'de tüketici hakem heyetleri ve tüketici mahkemeleri dâhil) dava açmaya devam eder."],["14. Değişiklikler ve iletişim","Bu koşulları değiştirebiliriz; güncel sürüm yürürlük tarihiyle birlikte her zaman bu sayfada yayımlanır. Yürürlük tarihinden sonraki kullanım kabul anlamına gelir. Sorularınız için: contact@falcon29.com."]]})
+};
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function render(l){
+  var d=T[l]||T.en, legalTr=(d.priv!==EN.priv);
+  document.documentElement.lang=l;
+  document.documentElement.dir=(l==="ar"?"rtl":"ltr");
+  document.querySelectorAll("[data-i]").forEach(function(e){var v=d[e.getAttribute("data-i")];if(typeof v==="string")e.textContent=v;});
+  document.getElementById("cards").innerHTML=d.cards.map(function(c){
+    return '<article class="group bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/80 transition flex flex-col justify-between"><div><div class="flex items-start justify-between gap-2"><div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold shrink-0">'+c[0]+'</div><span class="rounded-full border border-emerald-800/60 bg-emerald-950/50 px-2.5 py-1 text-[11px] font-semibold text-emerald-300">'+esc(c[4])+'</span></div><span class="mt-4 block text-xs font-semibold text-indigo-400 uppercase tracking-wider">'+esc(c[1])+'</span><h3 class="text-xl font-bold text-white mt-1">'+esc(c[2])+'</h3><p class="mt-3 text-sm text-slate-400 leading-relaxed">'+esc(c[3])+'</p><ul class="mt-4 flex flex-wrap gap-2 text-[11px] text-slate-400">'+c[6].map(function(t){return '<li class="rounded-md border border-slate-800 bg-slate-900 px-2 py-1">'+esc(t)+'</li>'}).join("")+'</ul></div><div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-500 font-medium"><span>'+esc(d.s3)+'</span><span class="text-slate-300 font-semibold">'+esc(c[5])+'</span></div></article>';
+  }).join("");
+  document.getElementById("vals").innerHTML=d.vals.map(function(v){return '<li class="rounded-xl border border-slate-800 bg-slate-950/50 p-4"><p class="font-semibold text-white">'+esc(v[0])+'</p><p class="mt-1 text-slate-400">'+esc(v[1])+'</p></li>'}).join("");
+  var note=(!legalTr&&l!=="en")?'<p class="rounded-lg border border-amber-800/50 bg-amber-950/30 p-3 text-amber-200/90 text-xs">This legal text is currently available in English only; the English version is the authoritative version.</p>':'';
+  function body(arr){return note+arr.map(function(s){return '<div><h3 class="text-slate-200 font-semibold">'+esc(s[0])+'</h3><p class="mt-1">'+esc(s[1])+'</p></div>'}).join("")}
+  document.getElementById("privBody").innerHTML=body(d.priv);
+  document.getElementById("termBody").innerHTML=body(d.term);
+  try{localStorage.setItem("f29lang",l)}catch(e){}
+}
+(function(){
+  var sel=document.getElementById("lang"),saved=null;
+  try{saved=localStorage.getItem("f29lang")}catch(e){}
+  var nav=(navigator.language||"en").slice(0,2), init=saved||(T[nav]?nav:"en");
+  sel.value=init; render(init);
+  sel.addEventListener("change",function(){render(sel.value)});
+  var btn=document.getElementById("navBtn"),mn=document.getElementById("mobileNav");
+  btn.addEventListener("click",function(){var o=!mn.classList.toggle("hidden");btn.setAttribute("aria-expanded",String(o))});
+  mn.addEventListener("click",function(e){if(e.target.tagName==="A"){mn.classList.add("hidden");btn.setAttribute("aria-expanded","false")}});
+})();
+</script>
 </body>
 </html>
