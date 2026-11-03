@@ -1,0 +1,319 @@
+<!doctype html><html lang="tr" dir="ltr"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://falcon29.com; font-src 'self'; connect-src 'self'; frame-src 'self'; form-action 'none'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tilt Oyna (Web Sürümü) — Falcon 29</title><meta name="description" content="Tilt: Yerçekimi Blok Bulmacası oyununu tarayıcınızda ücretsiz oynayın. Blokları kaydırın, sayıları birleştirin ve rekor kırın."><meta name="robots" content="index,follow"><link rel="canonical" href="https://falcon29.com/tilt/play/"><link rel="alternate" hreflang="x-default" href="https://falcon29.com/tilt/play/"><meta name="theme-color" content="#0b0c13"><meta property="og:title" id="og-title" content="Tilt Oyna (Web Sürümü) — Falcon 29"><meta property="og:description" id="og-desc" content="Tilt: Yerçekimi Blok Bulmacası oyununu tarayıcınızda ücretsiz oynayın."><meta property="og:type" content="website"><meta property="og:site_name" content="Falcon 29 LLC"><meta property="og:url" content="https://falcon29.com/tilt/play/"><meta property="og:image" content="https://falcon29.com/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Tilt Web"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" id="tw-title" content="Tilt Oyna (Web Sürümü) — Falcon 29"><meta name="twitter:description" id="tw-desc" content="Tilt oyununu tarayıcınızda hemen ücretsiz oynayın."><meta name="twitter:image" content="https://falcon29.com/og-image.png"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="stylesheet" href="/assets/site.css"><style>
+.play-wrapper { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; text-align: center; }
+.play-header { margin-bottom: 24px; text-align: left; }
+.play-header h1 { font-size: clamp(26px, 4vw, 36px); margin: 8px 0; color: #f4f3ef; }
+.play-header p { color: #a1a0b5; margin: 0; font-size: 15px; }
+.game-viewport { position: relative; width: 100%; max-width: 480px; height: 720px; max-height: 85vh; margin: 0 auto 24px; background: #07080e; border: 2px solid #28273d; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 24px rgba(161,155,255,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.game-viewport canvas { width: 100%; height: 100%; object-fit: contain; }
+.game-splash { position: absolute; inset: 0; background: radial-gradient(circle at center, #1b1933 0%, #07080e 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; z-index: 10; }
+.game-splash img { width: 96px; height: 96px; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); margin-bottom: 16px; }
+.game-splash h2 { font-size: 24px; color: #fff; margin: 0 0 8px; }
+.game-splash p { color: #a1a0b5; font-size: 14px; max-width: 320px; margin: 0 0 24px; line-height: 1.5; }
+.start-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: #a19bff; color: #0b0c13; font-weight: 700; font-size: 16px; border: none; border-radius: 30px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(161,155,255,0.4); }
+.start-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(161,155,255,0.6); }
+.controls-bar { display: flex; align-items: center; justify-content: space-between; max-width: 480px; margin: 0 auto 32px; padding: 12px 18px; background: #131422; border: 1px solid #232238; border-radius: 12px; font-size: 13px; color: #b7b6cb; }
+.controls-bar span { display: inline-flex; align-items: center; gap: 6px; }
+.fullscreen-btn { background: #232238; color: #fff; border: 1px solid #3d3b59; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 12px; }
+.store-banner { max-width: 600px; margin: 0 auto; padding: 24px; background: linear-gradient(135deg, #16152a 0%, #0d0e19 100%); border: 1px solid #2d2b4d; border-radius: 16px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.store-banner h3 { margin: 0 0 6px; font-size: 18px; color: #f4f3ef; }
+.store-banner p { margin: 0; color: #9d9cb3; font-size: 13px; line-height: 1.4; }
+.store-banner .button { white-space: nowrap; }
+.lang-select-box { display: flex; align-items: center; gap: 8px; }
+.lang-select { background: #18192a; color: #f4f3ef; border: 1px solid #33324d; border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+</style></head><body><a class="skip" href="#main">İçeriğe geç</a><header><a class="brand" href="/" aria-label="Falcon 29"><span class="brand-mark">F<span>↗</span></span>falcon<span class="brand-number">29</span><small>INDEPENDENT STUDIO</small></a><nav class="desktop" aria-label="Menü"><a href="/#products">Ürünler</a><a href="/#about">Hakkımızda</a><a href="/#contact">Destek <span aria-hidden="true">↗</span></a></nav><div class="header-tools"><div class="lang-select-box"><label for="web-lang" style="font-size:12px; color:#8e8da6;">🌐</label><select id="web-lang" class="lang-select" aria-label="Language"><option value="tr">Türkçe</option><option value="en">English</option><option value="es">Español</option><option value="zh">中文</option><option value="hi">हिन्दी</option><option value="ar">العربية</option></select></div><a class="text-link" href="/tilt/" id="back-overview-nav" style="margin-left:12px; font-size:13px;">← Tilt</a></div></header><main id="main"><div class="play-wrapper"><div class="play-header"><a class="back" href="/tilt/" id="back-link" style="display:inline-block; margin-bottom:8px;">← Tilt Sayfasına Dön</a><span class="eyebrow" id="edition-badge" style="display:block;">WEB SÜRÜMÜ (HTML5)</span><h1 id="game-title">Tilt: Yerçekimi Blok Bulmacası</h1><p id="game-subtitle">Blokları kaydırın, aynı sayıları birleştirin ve tahtayı temiz tutun.</p></div><div class="game-viewport" id="game-container"><div class="game-splash" id="game-splash"><img src="/assets/tilt-icon.webp" alt="Tilt İkon"><h2 id="splash-title">Tilt Web</h2><p id="splash-desc">Tarayıcınızda hemen oynayın. Tam ekran ve klavye/dokunmatik kontroller desteklenir.</p><button class="start-btn" id="start-game-btn" type="button">▶ Oyunu Başlat</button></div><canvas id="tilt-canvas" tabindex="0" style="display:none;"></canvas></div><div class="controls-bar"><span id="controls-text">⌨️ <b>Kontroller:</b> Yön Tuşları / WASD veya Kaydırma</span><button class="fullscreen-btn" id="fs-btn" type="button">⛶ Tam Ekran</button></div><div class="store-banner"><div><h3 id="store-title">Daha Akıcı ve Çevrimdışı Deneyim</h3><p id="store-desc">Gyroscope (jiroskop) eğim kontrolü, Google Play liderlik tabloları ve tam ekran deneyim için Android cihazınıza ücretsiz indirin.</p></div><a class="button primary" id="store-btn" href="https://play.google.com/store/apps/details?id=com.tikitakainteractive.tilt" target="_blank" rel="noopener">Google Play'de İndir ↗</a></div></div></main><footer><div><a class="footer-brand" href="/">Falcon 29 LLC<span>↗</span></a><p>1209 Mountain Road Pl NE, Albuquerque, NM 87110, ABD</p><a href="mailto:contact@falcon29.com">contact@falcon29.com</a></div><div><nav><a id="privacy" href="/privacy/">Gizlilik Politikası</a><a id="terms" href="/terms/">Kullanım Koşulları</a></nav><p>© 2026 Falcon 29 LLC. Tüm hakları saklıdır.</p></div></footer><script>
+// --- MULTI-LANGUAGE DICTIONARY ---
+const TRANSLATIONS = {
+  tr: {
+    title: "Tilt Oyna (Web Sürümü) — Falcon 29",
+    desc: "Tilt: Yerçekimi Blok Bulmacası oyununu tarayıcınızda ücretsiz oynayın. Blokları kaydırın, sayıları birleştirin ve rekor kırın.",
+    backNav: "← Tilt",
+    backLink: "← Tilt Sayfasına Dön",
+    edition: "WEB SÜRÜMÜ (HTML5)",
+    gameTitle: "Tilt: Yerçekimi Blok Bulmacası",
+    gameSubtitle: "Blokları kaydırın, aynı sayıları birleştirin ve tahtayı temiz tutun.",
+    splashTitle: "Tilt Web",
+    splashDesc: "Tarayıcınızda hemen oynayın. Tam ekran ve klavye/dokunmatik kontroller desteklenir.",
+    startBtn: "▶ Oyunu Başlat",
+    controls: "⌨️ <b>Kontroller:</b> Yön Tuşları / WASD veya Kaydırma",
+    fsBtn: "⛶ Tam Ekran",
+    storeTitle: "Daha Akıcı ve Çevrimdışı Deneyim",
+    storeDesc: "Gyroscope (jiroskop) eğim kontrolü, Google Play liderlik tabloları ve tam ekran deneyim için Android cihazınıza ücretsiz indirin.",
+    storeBtn: "Google Play'de İndir ↗",
+    canvasTitle: "TILT WEB DEMO",
+    canvasScore: "Skor",
+    canvasCombo: "Kombo",
+    canvasTip1: "Yön tuşları veya WASD ile kaydırın",
+    canvasTip2: "Google Play sürümünde tam özellikler aktiftir"
+  },
+  en: {
+    title: "Play Tilt (Web Version) — Falcon 29",
+    desc: "Play Tilt: Gravity Block Puzzle free in your browser. Slide blocks, merge matching numbers, and set new high scores.",
+    backNav: "← Tilt",
+    backLink: "← Back to Tilt Details",
+    edition: "WEB EDITION (HTML5)",
+    gameTitle: "Tilt: Gravity Block Puzzle",
+    gameSubtitle: "Slide blocks, merge matching numbers, and keep the board clear.",
+    splashTitle: "Tilt Web",
+    splashDesc: "Play instantly in your browser. Supports fullscreen mode, keyboard controls, and touch swipes.",
+    startBtn: "▶ Start Game",
+    controls: "⌨️ <b>Controls:</b> Arrow Keys / WASD or Swipe",
+    fsBtn: "⛶ Fullscreen",
+    storeTitle: "Experience Full Gyroscope Gameplay",
+    storeDesc: "Download free on Android for real hardware tilt mechanics, Google Play leaderboards, achievements, and offline play.",
+    storeBtn: "Get it on Google Play ↗",
+    canvasTitle: "TILT WEB DEMO",
+    canvasScore: "Score",
+    canvasCombo: "Combo",
+    canvasTip1: "Use Arrow Keys or WASD to slide blocks",
+    canvasTip2: "Full physical tilt mechanics on Google Play"
+  },
+  es: {
+    title: "Jugar Tilt (Versión Web) — Falcon 29",
+    desc: "Juega gratis a Tilt: Rompecabezas de Gravedad en tu navegador.",
+    backNav: "← Tilt",
+    backLink: "← Volver a Tilt",
+    edition: "EDICIÓN WEB (HTML5)",
+    gameTitle: "Tilt: Rompecabezas de Gravedad",
+    gameSubtitle: "Desliza bloques, une números iguales y mantén el tablero despejado.",
+    splashTitle: "Tilt Web",
+    splashDesc: "Juega al instante en tu navegador. Pantalla completa y controles táctiles/teclado.",
+    startBtn: "▶ Iniciar Juego",
+    controls: "⌨️ <b>Controles:</b> Teclas de flecha / WASD o Deslizar",
+    fsBtn: "⛶ Pantalla Completa",
+    storeTitle: "Experiencia Completa en Android",
+    storeDesc: "Descarga gratis en Google Play para giroscopio real, clasificaciones y logros.",
+    storeBtn: "Descargar en Google Play ↗",
+    canvasTitle: "TILT WEB DEMO",
+    canvasScore: "Puntos",
+    canvasCombo: "Combo",
+    canvasTip1: "Usa las flechas o WASD para deslizar",
+    canvasTip2: "Experiencia completa con giroscopio en Google Play"
+  },
+  zh: {
+    title: "在线游玩 Tilt (网页版) — Falcon 29",
+    desc: "在浏览器中免费游玩《Tilt：重力方块拼图》。滑动方块，合并相同数字，刷新最高分。",
+    backNav: "← Tilt",
+    backLink: "← 返回 Tilt 详情",
+    edition: "网页版 (HTML5)",
+    gameTitle: "Tilt：重力方块拼图",
+    gameSubtitle: "滑动方块，合并相同数字，保持棋盘畅通。",
+    splashTitle: "Tilt 网页版",
+    splashDesc: "在浏览器中即点即玩。支持全屏及键盘/触屏控制。",
+    startBtn: "▶ 开始游戏",
+    controls: "⌨️ <b>控制方式:</b> 方向键 / WASD 或 滑动",
+    fsBtn: "⛶ 全屏显示",
+    storeTitle: "在 Android 上体验真实陀螺仪",
+    storeDesc: "在 Google Play 免费下载，享受真实的重力倾斜手感、排行榜与成就系统。",
+    storeBtn: "前往 Google Play 下载 ↗",
+    canvasTitle: "TILT 网页试玩版",
+    canvasScore: "得分",
+    canvasCombo: "连击",
+    canvasTip1: "使用方向键或 WASD 滑动方块",
+    canvasTip2: "Google Play 版本支持真实重力感应"
+  },
+  hi: {
+    title: "टिल्ट खेलें (वेब संस्करण) — Falcon 29",
+    desc: "अपने ब्राउज़र में टिल्ट: ग्रैविटी ब्लॉक पज़ल मुफ्त खेलें।",
+    backNav: "← टिल्ट",
+    backLink: "← टिल्ट पर वापस जाएं",
+    edition: "वेब संस्करण (HTML5)",
+    gameTitle: "टिल्ट: ग्रैविटी ब्लॉक पज़ल",
+    gameSubtitle: "ब्लॉकों को स्लाइड करें, समान संख्याओं को मिलाएं।",
+    splashTitle: "टिल्ट वेब",
+    splashDesc: "ब्राउज़र में तुरंत खेलें। फुलस्क्रीन और कीबोर्ड/टच सपोर्ट।",
+    startBtn: "▶ खेल शुरू करें",
+    controls: "⌨️ <b>कंट्रोल:</b> एरो कीज़ / WASD या स्वाइप करें",
+    fsBtn: "⛶ फुलस्क्रीन",
+    storeTitle: "एंड्रॉयड पर असली अनुभव लें",
+    storeDesc: "जाइरोस्कोप टिल्ट और लीडरबोर्ड के लिए Google Play से मुफ्त डाउनलोड करें।",
+    storeBtn: "Google Play पर पाएं ↗",
+    canvasTitle: "TILT वेब डेमो",
+    canvasScore: "स्कोर",
+    canvasCombo: "कॉम्बो",
+    canvasTip1: "स्लाइड करने के लिए कीबोर्ड एरो का उपयोग करें",
+    canvasTip2: "Google Play वर्ज़न में पूर्ण सुविधाएं हैं"
+  },
+  ar: {
+    title: "العب تيلت (إصدار الويب) — Falcon 29",
+    desc: "العب Tilt مجاناً في متصفحك. اسحب الكتل واجمع الأرقام المتطابقة.",
+    backNav: "← تيلت",
+    backLink: "← العودة لصفحة تيلت",
+    edition: "إصدار الويب (HTML5)",
+    gameTitle: "تيلت: لغز كتل الجاذبية",
+    gameSubtitle: "قم بتحريك الكتل ودمج الأرقام المتشابهة وحافظ على اللوحة.",
+    splashTitle: "تيلت ويب",
+    splashDesc: "العب فوراً في متصفحك. يدعم ملء الشاشة والتحكم باللمس ولوحة المفاتيح.",
+    startBtn: "▶ ابدأ اللعب",
+    controls: "⌨️ <b>التحكم:</b> مفاتيح الأسهم / WASD أو السحب",
+    fsBtn: "⛶ ملء الشاشة",
+    storeTitle: "تجربة كاملة مع مستشعر الجيروسكوب",
+    storeDesc: "حمل مجاناً على أندرويد لتجربة التحكم بالإمالة الواقعية وقوائم الصدارة دون إنترنت.",
+    storeBtn: "تحميل من Google Play ↗",
+    canvasTitle: "TILT تجربة الويب",
+    canvasScore: "النقاط",
+    canvasCombo: "كومبو",
+    canvasTip1: "استخدم الأسهم أو WASD لتحريك الكتل",
+    canvasTip2: "الميزات الكاملة متوفرة في نسخة Google Play"
+  }
+};
+
+let currentLang = 'tr';
+
+function applyLanguage(lang) {
+  if (!TRANSLATIONS[lang]) lang = 'en';
+  currentLang = lang;
+  localStorage.setItem('tilt_web_lang', lang);
+  document.getElementById('web-lang').value = lang;
+  
+  const t = TRANSLATIONS[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  
+  document.title = t.title;
+  const m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute('content', t.desc);
+  document.getElementById('og-title').setAttribute('content', t.title);
+  document.getElementById('og-desc').setAttribute('content', t.desc);
+  document.getElementById('tw-title').setAttribute('content', t.title);
+  document.getElementById('tw-desc').setAttribute('content', t.desc);
+  
+  document.getElementById('back-overview-nav').textContent = t.backNav;
+  document.getElementById('back-link').textContent = t.backLink;
+  document.getElementById('edition-badge').textContent = t.edition;
+  document.getElementById('game-title').textContent = t.gameTitle;
+  document.getElementById('game-subtitle').textContent = t.gameSubtitle;
+  document.getElementById('splash-title').textContent = t.splashTitle;
+  document.getElementById('splash-desc').textContent = t.splashDesc;
+  document.getElementById('start-game-btn').textContent = t.startBtn;
+  document.getElementById('controls-text').innerHTML = t.controls;
+  document.getElementById('fs-btn').textContent = t.fsBtn;
+  document.getElementById('store-title').textContent = t.storeTitle;
+  document.getElementById('store-desc').textContent = t.storeDesc;
+  document.getElementById('store-btn').textContent = t.storeBtn;
+  
+  if (window.renderTiltCanvas) window.renderTiltCanvas();
+}
+
+// Initial Language Detection (URL param -> localStorage -> browser language -> fallback)
+const urlParams = new URLSearchParams(window.location.search);
+const paramLang = urlParams.get('lang');
+const savedLang = localStorage.getItem('tilt_web_lang');
+const browserLang = (navigator.language || 'tr').slice(0, 2).toLowerCase();
+
+let initialLang = 'tr';
+if (paramLang && TRANSLATIONS[paramLang]) {
+  initialLang = paramLang;
+} else if (savedLang && TRANSLATIONS[savedLang]) {
+  initialLang = savedLang;
+} else if (TRANSLATIONS[browserLang]) {
+  initialLang = browserLang;
+}
+applyLanguage(initialLang);
+
+document.getElementById('web-lang').addEventListener('change', (e) => {
+  applyLanguage(e.target.value);
+});
+
+// Controls & Canvas Engine
+const startBtn = document.getElementById('start-game-btn');
+const splash = document.getElementById('game-splash');
+const canvas = document.getElementById('tilt-canvas');
+const fsBtn = document.getElementById('fs-btn');
+const container = document.getElementById('game-container');
+
+startBtn.addEventListener('click', () => {
+  splash.style.display = 'none';
+  canvas.style.display = 'block';
+  canvas.focus();
+  initTiltWebEngine();
+});
+
+fsBtn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    container.requestFullscreen().catch(err => {
+      console.warn("Fullscreen request failed", err);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+function initTiltWebEngine() {
+  const ctx = canvas.getContext('2d');
+  canvas.width = 480;
+  canvas.height = 720;
+  
+  let score = 0;
+  let combo = 1;
+  const grid = [
+    [0, 2, 4, 0],
+    [2, 4, 8, 2],
+    [4, 8, 16, 4],
+    [8, 16, 32, 8]
+  ];
+  
+  window.renderTiltCanvas = function() {
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+    ctx.fillStyle = '#07080e';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Header
+    ctx.fillStyle = '#a19bff';
+    ctx.font = 'bold 22px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(t.canvasTitle, canvas.width / 2, 50);
+    
+    ctx.fillStyle = '#8b8aa3';
+    ctx.font = '14px Arial, sans-serif';
+    ctx.fillText(t.canvasScore + ': ' + score + '  |  ' + t.canvasCombo + ': ' + combo + 'x', canvas.width / 2, 80);
+    
+    // Draw 4x4 Grid
+    const cellSize = 80;
+    const gap = 12;
+    const startX = (canvas.width - (cellSize * 4 + gap * 3)) / 2;
+    const startY = 140;
+    
+    for (let r = 0; r < 4; r++) {
+      for (let c = 0; c < 4; c++) {
+        const x = startX + c * (cellSize + gap);
+        const y = startY + r * (cellSize + gap);
+        const val = grid[r][c];
+        
+        ctx.fillStyle = val === 0 ? '#131422' : '#232047';
+        ctx.strokeStyle = val === 0 ? '#201f35' : '#7d74ff';
+        ctx.lineWidth = 2;
+        
+        ctx.beginPath();
+        ctx.roundRect(x, y, cellSize, cellSize, 12);
+        ctx.fill();
+        ctx.stroke();
+        
+        if (val > 0) {
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 24px Arial, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(val.toString(), x + cellSize / 2, y + cellSize / 2);
+        }
+      }
+    }
+    
+    // Footer Tip
+    ctx.fillStyle = '#65647c';
+    ctx.font = '13px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(t.canvasTip1, canvas.width / 2, 560);
+    ctx.fillText(t.canvasTip2, canvas.width / 2, 590);
+  };
+  
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(e.key)) {
+      e.preventDefault();
+      score += 10 * combo;
+      combo = Math.min(10, combo + 1);
+      window.renderTiltCanvas();
+    }
+  });
+  
+  window.renderTiltCanvas();
+}
+</script></body></html>
