@@ -136,6 +136,31 @@ const Preloader = /** @constructor */ function () { // eslint-disable-line no-un
 		}), { headers: response.headers });
 	}
 
+	function fetchSplitWasm(file, tracker, raw) {
+		const p1 = file + '.part1';
+		const p2 = file + '.part2';
+		return Promise.all([
+			fetch(p1).then(function (r) { return r.ok ? r.arrayBuffer() : Promise.reject(new Error('Failed ' + p1)); }),
+			fetch(p2).then(function (r) { return r.ok ? r.arrayBuffer() : Promise.reject(new Error('Failed ' + p2)); })
+		]).then(function (buffers) {
+			const b1 = buffers[0];
+			const b2 = buffers[1];
+			const combined = new Uint8Array(b1.byteLength + b2.byteLength);
+			combined.set(new Uint8Array(b1), 0);
+			combined.set(new Uint8Array(b2), b1.byteLength);
+			tracker[file].total = combined.byteLength;
+			tracker[file].loaded = combined.byteLength;
+			tracker[file].done = true;
+			if (raw) {
+				return new Response(combined, {
+					status: 200,
+					headers: { 'Content-Type': 'application/wasm' }
+				});
+			}
+			return combined.buffer;
+		});
+	}
+
 	function loadFetch(file, tracker, fileSize, raw) {
 		tracker[file] = {
 			total: fileSize || 0,
@@ -144,13 +169,21 @@ const Preloader = /** @constructor */ function () { // eslint-disable-line no-un
 		};
 		return fetch(file).then(function (response) {
 			if (!response.ok) {
-				return Promise.reject(new Error(`Failed loading file '${file}'`));
+				if (file.endsWith('.wasm')) {
+					return fetchSplitWasm(file, tracker, raw);
+				}
+				return Promise.reject(new Error('Failed loading file ' + file));
 			}
 			const tr = getTrackedResponse(response, tracker[file]);
 			if (raw) {
 				return Promise.resolve(tr);
 			}
 			return tr.arrayBuffer();
+		}).catch(function (err) {
+			if (file.endsWith('.wasm')) {
+				return fetchSplitWasm(file, tracker, raw);
+			}
+			return Promise.reject(err);
 		});
 	}
 
