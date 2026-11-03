@@ -1,598 +1,337 @@
-<!doctype html><html lang="tr" dir="ltr"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://falcon29.com; font-src 'self'; connect-src 'self'; frame-src 'self'; form-action 'none'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>Tilt Oyna (Web Sürümü) — Falcon 29</title><meta name="description" content="Tilt: Yerçekimi Blok Bulmacası oyununu tarayıcınızda ücretsiz oynayın. Blokları kaydırın, sayıları birleştirin ve rekor kırın."><meta name="robots" content="index,follow"><link rel="canonical" href="https://falcon29.com/tilt/play/"><link rel="alternate" hreflang="x-default" href="https://falcon29.com/tilt/play/"><meta name="theme-color" content="#0b0c13"><meta property="og:title" content="Tilt Oyna (Web Sürümü) — Falcon 29"><meta property="og:description" content="Tilt: Yerçekimi Blok Bulmacası oyununu tarayıcınızda ücretsiz oynayın."><meta property="og:type" content="website"><meta property="og:site_name" content="Falcon 29 LLC"><meta property="og:url" content="https://falcon29.com/tilt/play/"><meta property="og:image" content="https://falcon29.com/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Tilt Web"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Tilt Oyna (Web Sürümü) — Falcon 29"><meta name="twitter:description" content="Tilt oyununu tarayıcınızda hemen ücretsiz oynayın."><meta name="twitter:image" content="https://falcon29.com/og-image.png"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="stylesheet" href="/assets/site.css"><style>
-* { box-sizing: border-box; }
-body { touch-action: manipulation; }
-.play-wrapper { max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; text-align: center; }
-.play-header { margin-bottom: 20px; text-align: left; }
-.play-header h1 { font-size: clamp(24px, 4vw, 34px); margin: 6px 0; color: #f4f3ef; }
-.play-header p { color: #a1a0b5; margin: 0; font-size: 14px; }
-.game-viewport { position: relative; width: 100%; max-width: 440px; height: 640px; margin: 0 auto 16px; background: #07080e; border: 2px solid #28273d; border-radius: 20px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.7), 0 0 24px rgba(161,155,255,0.18); user-select: none; -webkit-user-select: none; }
-#tilt-canvas { width: 100%; height: 100%; display: block; cursor: grab; }
-#tilt-canvas:active { cursor: grabbing; }
-.game-splash, .game-over-modal { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(27,25,51,0.96) 0%, rgba(7,8,14,0.98) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; z-index: 20; backdrop-filter: blur(4px); }
-.game-splash img { width: 90px; height: 90px; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); margin-bottom: 16px; }
-.game-splash h2, .game-over-modal h2 { font-size: 26px; color: #fff; margin: 0 0 8px; font-weight: 800; letter-spacing: -0.5px; }
-.game-splash p, .game-over-modal p { color: #a1a0b5; font-size: 14px; max-width: 320px; margin: 0 0 20px; line-height: 1.5; text-align: center; }
-.start-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 34px; background: linear-gradient(135deg, #a19bff 0%, #7d74ff 100%); color: #0b0c13; font-weight: 800; font-size: 16px; border: none; border-radius: 30px; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 18px rgba(161,155,255,0.45); }
-.start-btn:hover { transform: scale(1.04); box-shadow: 0 6px 24px rgba(161,155,255,0.65); }
-.start-btn:active { transform: scale(0.98); }
-.game-stats-bar { display: flex; align-items: center; justify-content: space-between; max-width: 440px; margin: 0 auto 12px; gap: 8px; }
-.stat-chip { flex: 1; background: #131422; border: 1px solid #28273d; border-radius: 12px; padding: 8px 10px; text-align: center; }
-.stat-chip small { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #7f7e98; margin-bottom: 2px; }
-.stat-chip b { display: block; font-size: 18px; color: #f4f3ef; font-weight: 800; }
-.stat-chip.combo-chip b { color: #00f0ff; }
-.controls-bar { display: flex; align-items: center; justify-content: space-between; max-width: 440px; margin: 0 auto 16px; padding: 10px 16px; background: #131422; border: 1px solid #232238; border-radius: 12px; font-size: 13px; color: #b7b6cb; }
-.controls-bar span { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
-.btn-group { display: flex; gap: 8px; }
-.icon-btn { background: #232238; color: #fff; border: 1px solid #3d3b59; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 12px; display: inline-flex; align-items: center; gap: 4px; transition: background 0.15s; }
-.icon-btn:hover { background: #32304e; }
-.dpad { display: grid; grid-template-columns: repeat(3, 44px); grid-template-rows: repeat(2, 44px); gap: 6px; justify-content: center; margin: 0 auto 20px; }
-.dpad-btn { background: #18192d; border: 1px solid #2f2e4a; color: #a19bff; font-size: 18px; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; }
-.dpad-btn:active { background: #a19bff; color: #0b0c13; transform: scale(0.95); }
-.dpad-btn.up { grid-column: 2; grid-row: 1; }
-.dpad-btn.left { grid-column: 1; grid-row: 2; }
-.dpad-btn.down { grid-column: 2; grid-row: 2; }
-.dpad-btn.right { grid-column: 3; grid-row: 2; }
-.store-banner { max-width: 600px; margin: 0 auto; padding: 22px; background: linear-gradient(135deg, #16152a 0%, #0d0e19 100%); border: 1px solid #2d2b4d; border-radius: 16px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-.store-banner h3 { margin: 0 0 6px; font-size: 17px; color: #f4f3ef; }
-.store-banner p { margin: 0; color: #9d9cb3; font-size: 13px; line-height: 1.4; }
-.lang-select { background: #18192a; color: #f4f3ef; border: 1px solid #33324d; border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer; }
-</style></head><body><a class="skip" href="#main">İçeriğe geç</a><header><a class="brand" href="/" aria-label="Falcon 29"><span class="brand-mark">F<span>↗</span></span>falcon<span class="brand-number">29</span><small>INDEPENDENT STUDIO</small></a><nav class="desktop" aria-label="Menü"><a href="/#products">Ürünler</a><a href="/#about">Hakkımızda</a><a href="/#contact">Destek <span aria-hidden="true">↗</span></a></nav><div class="header-tools"><div style="display:flex;align-items:center;gap:6px;"><label for="web-lang" style="font-size:12px;color:#8e8da6;">🌐</label><select id="web-lang" class="lang-select" aria-label="Language"><option value="tr">Türkçe</option><option value="en">English</option><option value="es">Español</option><option value="zh">中文</option><option value="hi">हिन्दी</option><option value="ar">العربية</option></select></div><a class="text-link" href="/tilt/" id="back-overview-nav" style="margin-left:10px;font-size:13px;">← Tilt</a></div></header><main id="main"><div class="play-wrapper"><div class="play-header"><a class="back" href="/tilt/" id="back-link" style="display:inline-block;margin-bottom:6px;">← Tilt Sayfasına Dön</a><span class="eyebrow" id="edition-badge" style="display:block;">WEB SÜRÜMÜ (HTML5)</span><h1 id="game-title">Tilt: Yerçekimi Blok Bulmacası</h1><p id="game-subtitle">Blokları kaydırın, aynı sayıları birleştirin ve tahtayı temiz tutun.</p></div><div class="game-stats-bar"><div class="stat-chip"><small id="stat-score-lbl">SKOR</small><b id="ui-score">0</b></div><div class="stat-chip"><small id="stat-high-lbl">EN YÜKSEK</small><b id="ui-high">0</b></div><div class="stat-chip combo-chip"><small id="stat-combo-lbl">KOMBO</small><b id="ui-combo">1x</b></div></div><div class="game-viewport" id="game-container"><canvas id="tilt-canvas" width="440" height="640"></canvas><div class="game-splash" id="game-splash"><img src="/assets/tilt-icon.webp" alt="Tilt İkon"><h2 id="splash-title">Tilt Web</h2><p id="splash-desc">Blokları kaydırın ve aynı sayıları birleştirerek 2048'e ve ötesine ulaşın!</p><button class="start-btn" id="start-game-btn" type="button">▶ Oyunu Başlat</button></div><div class="game-over-modal" id="game-over-modal" style="display:none;"><h2 id="go-title">Oyun Bitti!</h2><p id="go-desc">Hamle kalmadı. Harika bir skordu!</p><div style="margin-bottom:20px;font-size:18px;color:#00f0ff;"><span id="go-score-lbl">Son Skor:</span> <b id="go-final-score">0</b></div><button class="start-btn" id="restart-game-btn" type="button">🔄 Yeniden Dene</button></div></div><div class="controls-bar"><span id="controls-text">⌨️ Ok Tuşları / WASD veya Kaydırma</span><div class="btn-group"><button class="icon-btn" id="sound-btn" type="button" title="Ses Aç/Kapat">🔊</button><button class="icon-btn" id="fs-btn" type="button" title="Tam Ekran">⛶</button><button class="icon-btn" id="new-btn" type="button" title="Yeniden Başlat">🔄</button></div></div><div class="dpad"><button class="dpad-btn up" id="dpad-up" aria-label="Yukarı">▲</button><button class="dpad-btn left" id="dpad-left" aria-label="Sol">◀</button><button class="dpad-btn down" id="dpad-down" aria-label="Aşağı">▼</button><button class="dpad-btn right" id="dpad-right" aria-label="Sağ">▶</button></div><div class="store-banner"><div><h3 id="store-title">Daha Akıcı ve Çevrimdışı Deneyim</h3><p id="store-desc">Gerçek telefon jiroskopuyla fiziksel eğim kontrolü, Google Play liderlik tabloları ve tam ekran deneyim için Android cihazınıza ücretsiz indirin.</p></div><a class="button primary" id="store-btn" href="https://play.google.com/store/apps/details?id=com.tikitakainteractive.tilt" target="_blank" rel="noopener">Google Play'de İndir ↗</a></div></div></main><footer><div><a class="footer-brand" href="/">Falcon 29 LLC<span>↗</span></a><p>1209 Mountain Road Pl NE, Albuquerque, NM 87110, ABD</p><a href="mailto:contact@falcon29.com">contact@falcon29.com</a></div><div><nav><a id="privacy" href="/privacy/">Gizlilik Politikası</a><a id="terms" href="/terms/">Kullanım Koşulları</a></nav><p>© 2026 Falcon 29 LLC. Tüm hakları saklıdır.</p></div></footer><script>
-// ============================================================
-// TILT REAL WEB GAME ENGINE (Vanilla JS & HTML5 Canvas)
-// ============================================================
-
-const TRANSLATIONS = {
-  tr: {
-    title: "Tilt Oyna (Web Sürümü) — Falcon 29",
-    desc: "Tilt: Yerçekimi Blok Bulmacası oyununu tarayıcınızda ücretsiz oynayın. Blokları kaydırın, sayıları birleştirin ve rekor kırın.",
-    backNav: "← Tilt",
-    backLink: "← Tilt Sayfasına Dön",
-    edition: "WEB SÜRÜMÜ (HTML5)",
-    gameTitle: "Tilt: Yerçekimi Blok Bulmacası",
-    gameSubtitle: "Blokları kaydırın, aynı sayıları birleştirin ve tahtayı temiz tutun.",
-    statScore: "SKOR",
-    statHigh: "EN YÜKSEK",
-    statCombo: "KOMBO",
-    splashTitle: "Tilt Web",
-    splashDesc: "Blokları kaydırın ve aynı sayıları birleştirerek 2048'e ve ötesine ulaşın!",
-    startBtn: "▶ Oyunu Başlat",
-    controls: "⌨️ Ok Tuşları / WASD veya Kaydırma",
-    storeTitle: "Daha Akıcı ve Çevrimdışı Deneyim",
-    storeDesc: "Gerçek telefon jiroskopuyla fiziksel eğim kontrolü, Google Play liderlik tabloları ve tam ekran deneyim için Android cihazınıza ücretsiz indirin.",
-    storeBtn: "Google Play'de İndir ↗",
-    goTitle: "Oyun Bitti!",
-    goDesc: "Hamle kalmadı. Harika bir skordu!",
-    goScoreLbl: "Son Skor:",
-    restartBtn: "🔄 Yeniden Dene"
-  },
-  en: {
-    title: "Play Tilt (Web Version) — Falcon 29",
-    desc: "Play Tilt: Gravity Block Puzzle free in your browser. Slide blocks, merge matching numbers, and set new high scores.",
-    backNav: "← Tilt",
-    backLink: "← Back to Tilt Details",
-    edition: "WEB EDITION (HTML5)",
-    gameTitle: "Tilt: Gravity Block Puzzle",
-    gameSubtitle: "Slide blocks, merge matching numbers, and keep the board clear.",
-    statScore: "SCORE",
-    statHigh: "BEST",
-    statCombo: "COMBO",
-    splashTitle: "Tilt Web",
-    splashDesc: "Slide blocks and merge identical numbers to reach 2048 and beyond!",
-    startBtn: "▶ Start Game",
-    controls: "⌨️ Arrow Keys / WASD or Swipe",
-    storeTitle: "Experience Full Gyroscope Gameplay",
-    storeDesc: "Download free on Android for real hardware tilt mechanics, Google Play leaderboards, achievements, and offline play.",
-    storeBtn: "Get it on Google Play ↗",
-    goTitle: "Game Over!",
-    goDesc: "No more moves left. Great run!",
-    goScoreLbl: "Final Score:",
-    restartBtn: "🔄 Play Again"
-  },
-  es: {
-    title: "Jugar Tilt (Versión Web) — Falcon 29",
-    desc: "Juega gratis a Tilt: Rompecabezas de Gravedad en tu navegador.",
-    backNav: "← Tilt",
-    backLink: "← Volver a Tilt",
-    edition: "EDICIÓN WEB (HTML5)",
-    gameTitle: "Tilt: Rompecabezas de Gravedad",
-    gameSubtitle: "Desliza bloques, une números iguales y mantén el tablero despejado.",
-    statScore: "PUNTOS",
-    statHigh: "RÉCORD",
-    statCombo: "COMBO",
-    splashTitle: "Tilt Web",
-    splashDesc: "¡Desliza bloques y une números iguales para alcanzar 2048 y más!",
-    startBtn: "▶ Iniciar Juego",
-    controls: "⌨️ Flechas / WASD o Deslizar",
-    storeTitle: "Experiencia Completa en Android",
-    storeDesc: "Descarga gratis en Google Play para giroscopio real, clasificaciones y logros.",
-    storeBtn: "Descargar en Google Play ↗",
-    goTitle: "¡Fin del Juego!",
-    goDesc: "No quedan movimientos posibles.",
-    goScoreLbl: "Puntos Finales:",
-    restartBtn: "🔄 Reintentar"
-  },
-  zh: {
-    title: "在线游玩 Tilt (网页版) — Falcon 29",
-    desc: "在浏览器中免费游玩《Tilt：重力方块拼图》。滑动方块，合并相同数字，刷新最高分。",
-    backNav: "← Tilt",
-    backLink: "← 返回 Tilt 详情",
-    edition: "网页版 (HTML5)",
-    gameTitle: "Tilt：重力方块拼图",
-    gameSubtitle: "滑动方块，合并相同数字，保持棋盘畅通。",
-    statScore: "得分",
-    statHigh: "最高分",
-    statCombo: "连击",
-    splashTitle: "Tilt 网页版",
-    splashDesc: "滑动方块并合并相同数字，冲击 2048 及更高分数！",
-    startBtn: "▶ 开始游戏",
-    controls: "⌨️ 方向键 / WASD 或 滑动",
-    storeTitle: "在 Android 上体验真实陀螺仪",
-    storeDesc: "在 Google Play 免费下载，享受真实的重力倾斜手感、排行榜与成就系统。",
-    storeBtn: "前往 Google Play 下载 ↗",
-    goTitle: "游戏结束！",
-    goDesc: "没有可用步数了，表现很棒！",
-    goScoreLbl: "最终得分:",
-    restartBtn: "🔄 重新开始"
-  },
-  hi: {
-    title: "टिल्ट खेलें (वेब संस्करण) — Falcon 29",
-    desc: "अपने ब्राउज़र में टिल्ट: ग्रैविटी ब्लॉक पज़ल मुफ्त खेलें।",
-    backNav: "← टिल्ट",
-    backLink: "← टिल्ट पर वापस जाएं",
-    edition: "वेब संस्करण (HTML5)",
-    gameTitle: "टिल्ट: ग्रैविटी ब्लॉक पज़ल",
-    gameSubtitle: "ब्लॉकों को स्लाइड करें, समान संख्याओं को मिलाएं।",
-    statScore: "स्कोर",
-    statHigh: "सर्वश्रेष्ठ",
-    statCombo: "कॉम्बो",
-    splashTitle: "टिल्ट वेब",
-    splashDesc: "ब्लॉक स्लाइड करें और 2048 और उससे आगे तक पहुंचें!",
-    startBtn: "▶ खेल शुरू करें",
-    controls: "⌨️ एरो कीज़ / WASD या स्वाइप करें",
-    storeTitle: "एंड्रॉयड पर असली अनुभव लें",
-    storeDesc: "जाइरोस्कोप टिल्ट और लीडरबोर्ड के लिए Google Play से मुफ्त डाउनलोड करें।",
-    storeBtn: "Google Play पर पाएं ↗",
-    goTitle: "गेम ओवर!",
-    goDesc: "कोई चाल शेष नहीं है।",
-    goScoreLbl: "अंतिम स्कोर:",
-    restartBtn: "🔄 फिर खेलें"
-  },
-  ar: {
-    title: "العب تيلت (إصدار الويب) — Falcon 29",
-    desc: "العب Tilt مجاناً في متصفحك. اسحب الكتل واجمع الأرقام المتطابقة.",
-    backNav: "← تيلت",
-    backLink: "← العودة لصفحة تيلت",
-    edition: "إصدار الويب (HTML5)",
-    gameTitle: "تيلت: لغز كتل الجاذبية",
-    gameSubtitle: "قم بتحريك الكتل ودمج الأرقام المتشابهة وحافظ على اللوحة.",
-    statScore: "النقاط",
-    statHigh: "الأفضل",
-    statCombo: "كومبو",
-    splashTitle: "تيلت ويب",
-    splashDesc: "اسحب الكتل واجمع الأرقام لتصل إلى 2048 وأكثر!",
-    startBtn: "▶ ابدأ اللعب",
-    controls: "⌨️ الأسهم / WASD أو السحب",
-    storeTitle: "تجربة كاملة مع مستشعر الجيروسكوب",
-    storeDesc: "حمل مجاناً على أندرويد لتجربة التحكم بالإمالة الواقعية وقوائم الصدارة دون إنترنت.",
-    storeBtn: "تحميل من Google Play ↗",
-    goTitle: "انتهت اللعبة!",
-    goDesc: "لم تعد هناك حركات متاحة.",
-    goScoreLbl: "النقاط النهائية:",
-    restartBtn: "🔄 العب مجدداً"
-  }
-};
-
-let currentLang = 'tr';
-function applyLanguage(lang) {
-  if (!TRANSLATIONS[lang]) lang = 'en';
-  currentLang = lang;
-  localStorage.setItem('tilt_web_lang', lang);
-  document.getElementById('web-lang').value = lang;
-  
-  const t = TRANSLATIONS[lang];
-  document.documentElement.lang = lang;
-  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-  document.title = t.title;
-  const m = document.querySelector('meta[name="description"]');
-  if (m) m.setAttribute('content', t.desc);
-  
-  document.getElementById('back-overview-nav').textContent = t.backNav;
-  document.getElementById('back-link').textContent = t.backLink;
-  document.getElementById('edition-badge').textContent = t.edition;
-  document.getElementById('game-title').textContent = t.gameTitle;
-  document.getElementById('game-subtitle').textContent = t.gameSubtitle;
-  document.getElementById('stat-score-lbl').textContent = t.statScore;
-  document.getElementById('stat-high-lbl').textContent = t.statHigh;
-  document.getElementById('stat-combo-lbl').textContent = t.statCombo;
-  document.getElementById('splash-title').textContent = t.splashTitle;
-  document.getElementById('splash-desc').textContent = t.splashDesc;
-  document.getElementById('start-game-btn').textContent = t.startBtn;
-  document.getElementById('controls-text').innerHTML = t.controls;
-  document.getElementById('store-title').textContent = t.storeTitle;
-  document.getElementById('store-desc').textContent = t.storeDesc;
-  document.getElementById('store-btn').textContent = t.storeBtn;
-  document.getElementById('go-title').textContent = t.goTitle;
-  document.getElementById('go-desc').textContent = t.goDesc;
-  document.getElementById('go-score-lbl').textContent = t.goScoreLbl;
-  document.getElementById('restart-game-btn').textContent = t.restartBtn;
-}
-
-const urlParams = new URLSearchParams(window.location.search);
-const paramLang = urlParams.get('lang');
-const savedLang = localStorage.getItem('tilt_web_lang');
-const browserLang = (navigator.language || 'tr').slice(0, 2).toLowerCase();
-let initialLang = paramLang || savedLang || browserLang || 'tr';
-applyLanguage(initialLang);
-
-document.getElementById('web-lang').addEventListener('change', (e) => applyLanguage(e.target.value));
-
-// Web Audio Sound Synthesizer
-let audioCtx = null;
-let soundEnabled = true;
-
-function initAudio() {
-  if (!audioCtx) {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (AudioContext) audioCtx = new AudioContext();
-  }
-}
-
-function playSynth(freq, type = 'sine', duration = 0.12, gain = 0.1) {
-  if (!soundEnabled || !audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    g.gain.setValueAtTime(gain, audioCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-    osc.connect(g);
-    g.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
-  } catch (e) {}
-}
-
-function playSlideSound() { playSynth(220, 'triangle', 0.08, 0.06); }
-function playMergeSound(level) {
-  const baseFreqs = [261, 293, 329, 392, 440, 523, 587, 659, 783, 880, 1046];
-  const f = baseFreqs[Math.min(level, baseFreqs.length - 1)];
-  playSynth(f, 'sine', 0.18, 0.12);
-}
-function playGameOverSound() {
-  playSynth(300, 'sawtooth', 0.2, 0.1);
-  setTimeout(() => playSynth(200, 'sawtooth', 0.3, 0.1), 150);
-}
-
-// Tile Styling Colors
-const TILE_COLORS = {
-  2:    { bg: '#0b2e3a', border: '#00f0ff', text: '#00f0ff', glow: 'rgba(0,240,255,0.4)' },
-  4:    { bg: '#102747', border: '#3a86ff', text: '#70a9ff', glow: 'rgba(58,134,255,0.4)' },
-  8:    { bg: '#251240', border: '#8338ec', text: '#c77dff', glow: 'rgba(131,56,236,0.4)' },
-  16:   { bg: '#3a0d2a', border: '#ff006e', text: '#ff5c9d', glow: 'rgba(255,0,110,0.45)' },
-  32:   { bg: '#401b0b', border: '#fb5607', text: '#ff9254', glow: 'rgba(251,86,7,0.45)' },
-  64:   { bg: '#3f3108', border: '#ffbe0b', text: '#ffe066', glow: 'rgba(255,190,11,0.5)' },
-  128:  { bg: '#0a3328', border: '#06d6a0', text: '#52f5cb', glow: 'rgba(6,214,160,0.55)' },
-  256:  { bg: '#083344', border: '#00e5ff', text: '#67e8f9', glow: 'rgba(0,229,255,0.6)' },
-  512:  { bg: '#430d25', border: '#ff1493', text: '#f472b6', glow: 'rgba(255,20,147,0.6)' },
-  1024: { bg: '#420b33', border: '#f72585', text: '#fb7185', glow: 'rgba(247,37,133,0.7)' },
-  2048: { bg: '#4a3800', border: '#ffd700', text: '#fffbeb', glow: 'rgba(255,215,0,0.85)' }
-};
-
-// Game State
-const GRID_SIZE = 4;
-let board = [];
-let score = 0;
-let highScore = parseInt(localStorage.getItem('tilt_web_high_score') || '0', 10);
-let combo = 1;
-let lastMergeTurn = false;
-let isGameOver = false;
-
-const canvas = document.getElementById('tilt-canvas');
-const ctx = canvas.getContext('2d');
-const uiScore = document.getElementById('ui-score');
-const uiHigh = document.getElementById('ui-high');
-const uiCombo = document.getElementById('ui-combo');
-const splash = document.getElementById('game-splash');
-const goModal = document.getElementById('game-over-modal');
-const goFinalScore = document.getElementById('go-final-score');
-const startBtn = document.getElementById('start-game-btn');
-const restartBtn = document.getElementById('restart-game-btn');
-const newBtn = document.getElementById('new-btn');
-const soundBtn = document.getElementById('sound-btn');
-const fsBtn = document.getElementById('fs-btn');
-const container = document.getElementById('game-container');
-
-uiHigh.textContent = highScore.toLocaleString();
-
-function initBoard() {
-  board = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(0));
-  score = 0;
-  combo = 1;
-  isGameOver = false;
-  uiScore.textContent = '0';
-  uiCombo.textContent = '1x';
-  goModal.style.display = 'none';
-  
-  // Spawn initial 2 tiles
-  spawnRandomTile();
-  spawnRandomTile();
-  render();
-}
-
-function spawnRandomTile() {
-  const empty = [];
-  for (let r = 0; r < GRID_SIZE; r++) {
-    for (let c = 0; c < GRID_SIZE; c++) {
-      if (board[r][c] === 0) empty.push({ r, c });
+<!doctype html>
+<html lang="tr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://falcon29.com data:; font-src 'self'; connect-src 'self'; frame-src 'self' https://falcon29.com; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tilt Web — Orijinal Godot Web Sürümü — Falcon 29</title>
+  <meta name="description" content="Tilt: Yerçekimi Blok Bulmacası resmi Godot Web sürümü. Tarayıcınızda doğrudan tam ekran oynayın.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://falcon29.com/tilt/play/">
+  <meta name="theme-color" content="#0b0c13">
+  <meta property="og:title" content="Tilt Web — Orijinal Godot Web Sürümü">
+  <meta property="og:description" content="Tilt: Yerçekimi Blok Bulmacası resmi Godot Web sürümü. Tarayıcınızda doğrudan oynayın.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Falcon 29 LLC">
+  <meta property="og:url" content="https://falcon29.com/tilt/play/">
+  <meta property="og:image" content="https://falcon29.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { touch-action: manipulation; background: #0b0c13; color: #f4f3ef; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .play-wrapper { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; text-align: center; }
+    .play-header { margin-bottom: 20px; text-align: left; }
+    .play-header a.back { color: #a19bff; text-decoration: none; font-size: 14px; font-weight: 500; display: inline-block; margin-bottom: 8px; }
+    .play-header a.back:hover { text-decoration: underline; }
+    .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #a19bff; font-weight: 700; margin-bottom: 4px; display: block; }
+    .play-header h1 { font-size: clamp(24px, 4vw, 32px); margin: 6px 0; color: #f4f3ef; font-weight: 800; }
+    .play-header p { color: #a1a0b5; margin: 0; font-size: 14px; line-height: 1.5; }
+    
+    .game-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      height: 760px;
+      max-height: 85vh;
+      margin: 0 auto 16px;
+      background: #000;
+      border: 2px solid #28273d;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.8), 0 0 32px rgba(161,155,255,0.22);
     }
-  }
-  if (empty.length === 0) return false;
-  const spot = empty[Math.floor(Math.random() * empty.length)];
-  // 90% chance of 2, 10% chance of 4
-  board[spot.r][spot.c] = Math.random() < 0.9 ? 2 : 4;
-  return true;
-}
-
-// Directional Sliding & Merging Physics
-function slide(row) {
-  let arr = row.filter(val => val !== 0);
-  let mergedArr = [];
-  let scoreGain = 0;
-  let mergesInRow = 0;
-  
-  for (let i = 0; i < arr.length; i++) {
-    if (i < arr.length - 1 && arr[i] === arr[i + 1]) {
-      const mergedVal = arr[i] * 2;
-      mergedArr.push(mergedVal);
-      scoreGain += mergedVal;
-      mergesInRow++;
-      const level = Math.log2(mergedVal);
-      playMergeSound(level);
-      i++; // Skip merged partner
-    } else {
-      mergedArr.push(arr[i]);
-    }
-  }
-  while (mergedArr.length < GRID_SIZE) {
-    mergedArr.push(0);
-  }
-  return { newRow: mergedArr, gain: scoreGain, merges: mergesInRow };
-}
-
-function rotateBoardClockwise() {
-  const newBoard = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(0));
-  for (let r = 0; r < GRID_SIZE; r++) {
-    for (let c = 0; c < GRID_SIZE; c++) {
-      newBoard[c][GRID_SIZE - 1 - r] = board[r][c];
-    }
-  }
-  board = newBoard;
-}
-
-function move(direction) {
-  // 0: Left, 1: Up, 2: Right, 3: Down
-  if (isGameOver) return;
-  initAudio();
-  
-  const rotMap = { left: 0, up: 3, right: 2, down: 1 };
-  const rotations = rotMap[direction];
-  
-  for (let i = 0; i < rotations; i++) rotateBoardClockwise();
-  
-  let moved = false;
-  let turnScore = 0;
-  let totalMerges = 0;
-  
-  for (let r = 0; r < GRID_SIZE; r++) {
-    const { newRow, gain, merges } = slide(board[r]);
-    for (let c = 0; c < GRID_SIZE; c++) {
-      if (board[r][c] !== newRow[c]) moved = true;
-    }
-    board[r] = newRow;
-    turnScore += gain;
-    totalMerges += merges;
-  }
-  
-  const returnRotations = (4 - rotations) % 4;
-  for (let i = 0; i < returnRotations; i++) rotateBoardClockwise();
-  
-  if (moved) {
-    if (totalMerges > 0) {
-      combo = Math.min(10, combo + totalMerges);
-      score += turnScore * combo;
-      lastMergeTurn = true;
-    } else {
-      combo = Math.max(1, combo - 1);
-      lastMergeTurn = false;
-      playSlideSound();
+    .game-viewport iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
     
-    uiScore.textContent = score.toLocaleString();
-    uiCombo.textContent = combo + 'x';
-    
-    if (score > highScore) {
-      highScore = score;
-      uiHigh.textContent = highScore.toLocaleString();
-      localStorage.setItem('tilt_web_high_score', highScore.toString());
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 460px;
+      margin: 0 auto 24px;
+      padding: 12px 18px;
+      background: #131422;
+      border: 1px solid #232238;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #b7b6cb;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .action-btn {
+      background: #232238;
+      color: #f4f3ef;
+      border: 1px solid #3d3b59;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: #32304e;
+      border-color: #a19bff;
+      color: #fff;
     }
     
-    spawnRandomTile();
-    render();
-    checkGameOver();
-  }
-}
-
-function checkGameOver() {
-  for (let r = 0; r < GRID_SIZE; r++) {
-    for (let c = 0; c < GRID_SIZE; c++) {
-      if (board[r][c] === 0) return;
-      if (c < GRID_SIZE - 1 && board[r][c] === board[r][c + 1]) return;
-      if (r < GRID_SIZE - 1 && board[r][c] === board[r + 1][c]) return;
+    .store-banner {
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(35,34,56,0.6), rgba(19,20,34,0.9));
+      border: 1px solid #2a2942;
+      border-radius: 16px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
-  }
-  isGameOver = true;
-  playGameOverSound();
-  goFinalScore.textContent = score.toLocaleString();
-  goModal.style.display = 'flex';
-}
+    .store-banner h3 { margin: 0 0 4px; font-size: 15px; color: #fff; }
+    .store-banner p { margin: 0; font-size: 12px; color: #a1a0b5; line-height: 1.4; }
+    .store-btn {
+      flex-shrink: 0;
+      background: #a19bff;
+      color: #0b0c13;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.2s;
+    }
+    .store-btn:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">İçeriğe Atla</a>
+  <header>
+    <a class="brand" href="/" aria-label="Falcon 29">
+      <span class="brand-mark">F<span>↗</span></span>falcon<span class="brand-number">29</span>
+      <small>INDEPENDENT STUDIO</small>
+    </a>
+    <nav class="desktop" aria-label="Menü">
+      <a href="/#products">Ürünler</a>
+      <a href="/#about">Hakkımızda</a>
+      <a href="/#contact">Destek <span aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="header-tools">
+      <select aria-label="Dil Seçimi" id="language" onchange="if(this.value)location.href=this.value;">
+        <option value="/tilt/play/?lang=tr-TR" selected>Türkçe</option>
+        <option value="/tilt/play/?lang=en-US">English (US)</option>
+        <option value="/tilt/play/?lang=en-GB">English (UK)</option>
+        <option value="/tilt/play/?lang=en-CA">English (Canada)</option>
+        <option value="/tilt/play/?lang=en-AU">English (Australia)</option>
+        <option value="/tilt/play/?lang=en-IN">English (India)</option>
+        <option value="/tilt/play/?lang=en-SG">English (Singapore)</option>
+        <option value="/tilt/play/?lang=en-ZA">English (South Africa)</option>
+        <option value="/tilt/play/?lang=de-DE">Deutsch</option>
+        <option value="/tilt/play/?lang=fr-FR">Français (France)</option>
+        <option value="/tilt/play/?lang=fr-CA">Français (Canada)</option>
+        <option value="/tilt/play/?lang=es-ES">Español (España)</option>
+        <option value="/tilt/play/?lang=es-419">Español (Latinoamérica)</option>
+        <option value="/tilt/play/?lang=es-US">Español (EE.UU.)</option>
+        <option value="/tilt/play/?lang=it-IT">Italiano</option>
+        <option value="/tilt/play/?lang=pt-BR">Português (Brasil)</option>
+        <option value="/tilt/play/?lang=pt-PT">Português (Portugal)</option>
+        <option value="/tilt/play/?lang=ru-RU">Русский</option>
+        <option value="/tilt/play/?lang=ja-JP">日本語</option>
+        <option value="/tilt/play/?lang=ko-KR">한국어</option>
+        <option value="/tilt/play/?lang=zh-CN">简体中文</option>
+        <option value="/tilt/play/?lang=zh-TW">繁體中文 (台灣)</option>
+        <option value="/tilt/play/?lang=zh-HK">繁體中文 (香港)</option>
+        <option value="/tilt/play/?lang=ar">العربية</option>
+        <option value="/tilt/play/?lang=hi-IN">हिन्दी</option>
+        <option value="/tilt/play/?lang=id">Bahasa Indonesia</option>
+        <option value="/tilt/play/?lang=nl-NL">Nederlands</option>
+        <option value="/tilt/play/?lang=pl-PL">Polski</option>
+        <option value="/tilt/play/?lang=th">ไทย</option>
+        <option value="/tilt/play/?lang=vi">Tiếng Việt</option>
+        <option value="/tilt/play/?lang=af">Afrikaans</option>
+        <option value="/tilt/play/?lang=am">አማርኛ</option>
+        <option value="/tilt/play/?lang=az-AZ">Azərbaycan dili</option>
+        <option value="/tilt/play/?lang=be">Беларуская</option>
+        <option value="/tilt/play/?lang=bg">Български</option>
+        <option value="/tilt/play/?lang=bn-BD">বাংলা</option>
+        <option value="/tilt/play/?lang=ca">Català</option>
+        <option value="/tilt/play/?lang=cs-CZ">Čeština</option>
+        <option value="/tilt/play/?lang=da-DK">Dansk</option>
+        <option value="/tilt/play/?lang=el-GR">Ελληνικά</option>
+        <option value="/tilt/play/?lang=et">Eesti</option>
+        <option value="/tilt/play/?lang=eu-ES">Euskara</option>
+        <option value="/tilt/play/?lang=fa">فارسی</option>
+        <option value="/tilt/play/?lang=fa-AE">فارسی (امارات)</option>
+        <option value="/tilt/play/?lang=fa-AF">دری / فارسی</option>
+        <option value="/tilt/play/?lang=fa-IR">فارسی (ایران)</option>
+        <option value="/tilt/play/?lang=fi-FI">Suomi</option>
+        <option value="/tilt/play/?lang=fil">Filipino</option>
+        <option value="/tilt/play/?lang=gl-ES">Galego</option>
+        <option value="/tilt/play/?lang=gu">ગુજરાતી</option>
+        <option value="/tilt/play/?lang=hr">Hrvatski</option>
+        <option value="/tilt/play/?lang=hu-HU">Magyar</option>
+        <option value="/tilt/play/?lang=hy-AM">Հայերեն</option>
+        <option value="/tilt/play/?lang=is-IS">Íslenska</option>
+        <option value="/tilt/play/?lang=iw-IL">עברית</option>
+        <option value="/tilt/play/?lang=ka-GE">ქართული</option>
+        <option value="/tilt/play/?lang=kk">Qazaqşa (Қазақ тілі)</option>
+        <option value="/tilt/play/?lang=km-KH">ភាសាខ្មែរ</option>
+        <option value="/tilt/play/?lang=kn-IN">ಕನ್ನಡ</option>
+        <option value="/tilt/play/?lang=ky-KG">Qırğızça (Кыргызча)</option>
+        <option value="/tilt/play/?lang=lo-LA">ພາສາລາວ</option>
+        <option value="/tilt/play/?lang=lt">Lietuvių</option>
+        <option value="/tilt/play/?lang=lv">Latviešu</option>
+        <option value="/tilt/play/?lang=mk-MK">Македонски</option>
+        <option value="/tilt/play/?lang=ml-IN">മലയാളം</option>
+        <option value="/tilt/play/?lang=mn-MN">Монгол</option>
+        <option value="/tilt/play/?lang=mr-IN">मराठी</option>
+        <option value="/tilt/play/?lang=ms">Bahasa Melayu</option>
+        <option value="/tilt/play/?lang=ms-MY">Bahasa Melayu (Malaysia)</option>
+        <option value="/tilt/play/?lang=my-MM">မြန်မာ</option>
+        <option value="/tilt/play/?lang=ne-NP">नेपाली</option>
+        <option value="/tilt/play/?lang=no-NO">Norsk</option>
+        <option value="/tilt/play/?lang=pa">ਪੰਜਾਬੀ</option>
+        <option value="/tilt/play/?lang=rm">Rumantsch</option>
+        <option value="/tilt/play/?lang=ro">Română</option>
+        <option value="/tilt/play/?lang=si-LK">සිංහල</option>
+        <option value="/tilt/play/?lang=sk">Slovenčina</option>
+        <option value="/tilt/play/?lang=sl">Slovenščina</option>
+        <option value="/tilt/play/?lang=sq">Shqip</option>
+        <option value="/tilt/play/?lang=sr">Српски</option>
+        <option value="/tilt/play/?lang=sv-SE">Svenska</option>
+        <option value="/tilt/play/?lang=sw">Kiswahili</option>
+        <option value="/tilt/play/?lang=ta-IN">தமிழ்</option>
+        <option value="/tilt/play/?lang=te-IN">తెలుగు</option>
+        <option value="/tilt/play/?lang=uk">Українська</option>
+        <option value="/tilt/play/?lang=ur">اردو</option>
+        <option value="/tilt/play/?lang=zu">isiZulu</option>
+      </select>
+      <details class="mobile-menu">
+        <summary>Menü</summary>
+        <nav>
+          <a href="/#products">Ürünler</a>
+          <a href="/#about">Hakkımızda</a>
+          <a href="/#contact">Destek <span aria-hidden="true">↗</span></a>
+        </nav>
+      </details>
+    </div>
+  </header>
 
-function render() {
-  ctx.fillStyle = '#07080e';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  // Neon Board Frame
-  const padding = 20;
-  const boardSize = canvas.width - padding * 2;
-  const boardX = padding;
-  const boardY = (canvas.height - boardSize) / 2;
-  
-  // Outer Glow Frame
-  ctx.strokeStyle = '#222138';
-  ctx.lineWidth = 4;
-  ctx.fillStyle = '#0e0f1a';
-  ctx.beginPath();
-  ctx.roundRect(boardX, boardY, boardSize, boardSize, 18);
-  ctx.fill();
-  ctx.stroke();
-  
-  const gap = 12;
-  const cellSize = (boardSize - gap * (GRID_SIZE + 1)) / GRID_SIZE;
-  
-  for (let r = 0; r < GRID_SIZE; r++) {
-    for (let c = 0; c < GRID_SIZE; c++) {
-      const x = boardX + gap + c * (cellSize + gap);
-      const y = boardY + gap + r * (cellSize + gap);
-      const val = board[r][c];
+  <main id="main">
+    <div class="play-wrapper">
+      <div class="play-header">
+        <a class="back" href="/tilt/" id="back-link">← Tilt Sayfasına Dön</a>
+        <span class="eyebrow" id="edition-badge">RESMİ GODOT WEB SÜRÜMÜ</span>
+        <h1 id="game-title">Tilt: Yerçekimi Blok Bulmacası</h1>
+        <p id="game-subtitle">Blokları kaydırın, aynı sayıları birleştirin ve tahtayı temiz tutun.</p>
+      </div>
+
+      <div class="game-viewport" id="game-container">
+        <iframe id="godot-frame" src="/tilt/play/godot/" title="Tilt — Official Godot Web Edition" allow="autoplay; fullscreen; focus-without-user-activation"></iframe>
+      </div>
+
+      <div class="controls-bar">
+        <span id="controls-text">⌨️ Ok Tuşları / WASD veya Dokunmatik</span>
+        <div style="display:flex;gap:8px;">
+          <button class="action-btn" id="fs-btn" type="button">⛶ Tam Ekran</button>
+          <a class="action-btn" href="/tilt/play/godot/" target="_blank" rel="noopener">🚀 Ayrı Sekme ↗</a>
+        </div>
+      </div>
+
+      <div class="store-banner">
+        <div>
+          <h3 id="store-title">Daha Akıcı ve Çevrimdışı Deneyim</h3>
+          <p id="store-desc">Jiroskop fiziksel eğim kontrolü, Google Play liderlik tabloları ve tam deneyim için Android cihazınıza ücretsiz indirin.</p>
+        </div>
+        <a class="store-btn" id="store-link" href="https://play.google.com/store/apps/details?id=com.tikitakainteractive.tilt" target="_blank" rel="noopener">Google Play'de İndir ↗</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="Falcon 29">
+          <span class="brand-mark">F<span>↗</span></span>falcon<span class="brand-number">29</span>
+        </a>
+        <p>Falcon 29 LLC · Bağımsız Oyun ve Yazılım Stüdyosu</p>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>© 2026 Falcon 29 LLC. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+  <script>
+    const T = {"tr-TR": {"title": "Tilt: Yerçekimi Blok Bulmacası", "desc": "Blokları kaydırın, aynı sayıları birleştirin ve tahtayı temiz tutun."}, "en-US": {"title": "Tilt: Gravity Block Puzzle", "desc": "Slide blocks, merge matching numbers, and keep the board clear."}, "en-GB": {"title": "TILT: Gravity Block Puzzle", "desc": "Slide blocks, master gravity and merge! Smart tactical puzzle challenge."}, "en-CA": {"title": "TILT: Gravity Block Puzzle", "desc": "Slide blocks, master gravity and merge! Smart tactical puzzle challenge."}, "en-AU": {"title": "TILT: Gravity Block Puzzle", "desc": "Slide blocks, master gravity and merge! Smart tactical puzzle challenge."}, "en-IN": {"title": "TILT: Gravity Block Puzzle", "desc": "Slide blocks, master gravity and merge! Smart tactical puzzle challenge."}, "en-SG": {"title": "TILT: Gravity Block Puzzle", "desc": "Slide blocks, master gravity and merge! Smart tactical puzzle challenge."}, "en-ZA": {"title": "TILT: Gravity Block Puzzle", "desc": "Slide blocks, master gravity and merge! Smart tactical puzzle challenge."}, "de-DE": {"title": "TILT: Schwerkraft Block-Puzzle", "desc": "Blöcke verschieben, Schwerkraft steuern & kombinieren! Taktisches Denkspiel."}, "fr-FR": {"title": "TILT: Puzzle Bloc & Gravité", "desc": "Glissez les blocs, maîtrisez la gravité et fusionnez ! Casse-tête tactique."}, "fr-CA": {"title": "TILT: Puzzle Bloc & Gravité", "desc": "Glissez les blocs, maîtrisez la gravité et fusionnez ! Casse-tête tactique."}, "es-ES": {"title": "TILT: Puzle Bloques y Gravedad", "desc": "¡Mueve bloques, domina la gravedad y fusiona! Ingenioso puzle táctico."}, "es-419": {"title": "TILT: Puzle Bloques y Gravedad", "desc": "¡Mueve bloques, domina la gravedad y fusiona! Gran puzle de lógica y táctica."}, "es-US": {"title": "TILT: Puzle Bloques y Gravedad", "desc": "¡Mueve bloques, domina la gravedad y fusiona! Gran puzle de lógica y táctica."}, "it-IT": {"title": "TILT: Puzzle Blocchi & Gravità", "desc": "Fai scorrere i blocchi, domina la gravità e unisci! Gioco logico e tattico."}, "pt-BR": {"title": "TILT: Quebra-Cabeça Gravidade", "desc": "Deslize blocos, controle a gravidade e combine! Desafio tático e inteligente."}, "pt-PT": {"title": "TILT: Quebra-Cabeça Gravidade", "desc": "Deslize blocos, controle a gravidade e combine! Desafio tático e inteligente."}, "ru-RU": {"title": "TILT: Гравитация Головоломка", "desc": "Двигайте блоки, управляйте гравитацией и объединяйте! Умная тактическая игра."}, "ja-JP": {"title": "TILT: 重力ブロックパズル 思考型脳トレ", "desc": "ブロックをスライドして合体！重力を操りコンボを決めろ。9つのモードで遊べる究極の思考型タクティカルパズル。"}, "ko-KR": {"title": "TILT: 중력 블록 퍼즐 두뇌 게임", "desc": "블록을 밀어 합치고 중력을 지배하라! 9가지 모드의 스마트 전술 퍼즐 게임."}, "zh-CN": {"title": "TILT: 重力方块拼图 益智脑力", "desc": "滑动方块，操控重力并合成！挑战9大模式的硬核战术益智消除游戏。"}, "zh-TW": {"title": "TILT: 重力方塊拼圖 益智大腦", "desc": "滑動方塊，操控重力並合成！挑戰9大模式的戰術益智益腦遊戲。"}, "zh-HK": {"title": "TILT: 重力方塊拼圖 益智大腦", "desc": "滑動方塊，操控重力並合成！挑戰9大模式的戰術益智益腦遊戲。"}, "ar": {"title": "TILT: لغز مكعبات الجاذبية", "desc": "حرّك الكتل، تحكّم في الجاذبية وادمج الأرقام! لعبة ألغاز تكتيكية وذكية وممتعة."}, "hi-IN": {"title": "TILT: ग्रैविटी ब्लॉक पहेली", "desc": "ब्लॉक स्लाइड करें, ग्रैविटी कंट्रोल करें और मिलाएं! शानदार रणनीतिक पहेली गेम।"}, "id": {"title": "TILT: Puzzle Blok & Gravitasi", "desc": "Geser balok, kendalikan gravitasi dan gabungkan! Game asah otak yang taktis."}, "nl-NL": {"title": "TILT: Zwaartekracht Puzzel", "desc": "Schuif blokken, stuur zwaartekracht & combineer! Slimme tactische puzzel."}, "pl-PL": {"title": "TILT: Grawitacja Puzzle Klocki", "desc": "Przesuwaj klocki, kontroluj grawitację i łącz! Sprytna łamigłówka taktyczna."}, "th": {"title": "TILT: ปริศนาบล็อกแรงโน้มถ่วง", "desc": "เลื่อนบล็อก ควบคุมแรงโน้มถ่วงและรวมตัวเลข! เกมปริศนาฝึกสมองสุดท้าทาย 9 โหมด."}, "vi": {"title": "TILT: Xếp Khối Trọng Lực", "desc": "Trượt khối, làm chủ trọng lực và hợp nhất! Game giải đố trí tuệ cực cuốn."}, "af": {"title": "TILT: Gravitasie Blok Legkaart", "desc": "Gly blokke, beheer gravitasie & kombineer! Slim taktiese brein-legkaart."}, "am": {"title": "TILT: የስበት ኃይል እንቆቅልሽ", "desc": "ብሎኮችን ያንሸራትቱ፣ የስበት ኃይልን ይቆጣጠሩ እና ያዋህዱ! ብልህ የታክቲክ የአእምሮ ጨዋታ።"}, "az-AZ": {"title": "TILT: Qravitasiya Blok Oyunu", "desc": "Blokları sürüşdür, qravitasiyanı idarə et və birləşdir! Taktiki zəka tapmacası."}, "be": {"title": "TILT: Гравітацыя Блок Пазл", "desc": "Рухайце блокі, кіруйце гравітацыяй і аб'ядноўвайце! Разумная тактычная гульня."}, "bg": {"title": "TILT: Гравитационен Пъзел Блок", "desc": "Плъзгайте блокове, управлявайте гравитацията & съединявайте! Умен пъзел."}, "bn-BD": {"title": "TILT: গ্র্যাভিটি ব্লক পাজল", "desc": "ব্লক স্লাইড করুন, মাধ্যাকর্ষণ নিয়ন্ত্রণ ও মার্জ করুন! দারুণ ব্রেন পাজল গেম।"}, "ca": {"title": "TILT: Puzle Blocs i Gravetat", "desc": "Llisca blocs, domina la gravetat i fusiona! Un enginyós puzle tàctic de lògica."}, "cs-CZ": {"title": "TILT: Gravitační Hlavolam", "desc": "Posouvejte bloky, ovládejte gravitaci a spojujte! Chytrá taktická logická hra."}, "da-DK": {"title": "TILT: Tyngdekraft Puslespil", "desc": "Skub blokke, styr tyngdekraften og kombiner! Smart taktisk hjernetræningsspil."}, "el-GR": {"title": "TILT: Παζλ Βαρύτητας & Κύβων", "desc": "Σύρετε κύβους, ελέγξτε τη βαρύτητα και ενώστε! Έξυπνο τακτικό παζλ στρατηγικής."}, "et": {"title": "TILT: Gravitatsiooni Pusle", "desc": "Libista klotse, juhi gravitatsiooni ja ühenda! Nutikas taktikaline mõttemäng."}, "eu-ES": {"title": "TILT: Grabitate Bloke Puzzlea", "desc": "Lerratu blokeak, grabitatea menderatu eta batu! Buru-hausgarri adimenduna."}, "fa": {"title": "TILT: پازل جاذبه و بلوک‌ها", "desc": "بلوک‌ها را بکشید، جاذبه را کنترل و ادغام کنید! یک بازی فکری و تاکتیکی جذاب."}, "fa-AE": {"title": "TILT: پازل جاذبه و بلوک‌ها", "desc": "بلوک‌ها را بکشید، جاذبه را کنترل و ادغام کنید! یک بازی فکری و تاکتیکی جذاب."}, "fa-AF": {"title": "TILT: پازل جاذبه و بلوک‌ها", "desc": "بلوک‌ها را بکشید، جاذبه را کنترل و ادغام کنید! یک بازی فکری و تاکتیکی جذاب."}, "fa-IR": {"title": "TILT: پازل جاذبه و بلوک‌ها", "desc": "بلوک‌ها را بکشید، جاذبه را کنترل و ادغام کنید! یک بازی فکری و تاکتیکی جذاب."}, "fi-FI": {"title": "TILT: Painovoima Pulmapeli", "desc": "Liu'uta palikoita, hallitse painovoimaa ja yhdistä! Älykäs taktinen aivopähkinä."}, "fil": {"title": "TILT: Palaisipan ng Grabidad", "desc": "I-slide ang mga bloke, kontrolin ang grabidad at mag-merge! Matalinong puzzle."}, "gl-ES": {"title": "TILT: Puzle de Gravidade", "desc": "Despraza bloques, domina a gravidade e fusiona! Xogo de enxeño táctico e lóxica."}, "gu": {"title": "TILT: ગ્રેવિટી બ્લોક પઝલ", "desc": "બ્લોક્સ સ્લાઇડ કરો, ગ્રેવિટી નિયંત્રિત કરો અને મર્જ કરો! સ્માર્ટ પઝલ ગેમ."}, "hr": {"title": "TILT: Gravitacijska Slagalica", "desc": "Pomičite blokove, upravljajte gravitacijom i spajajte! Pametna taktička igra."}, "hu-HU": {"title": "TILT: Gravitációs Kirakós", "desc": "Csúsztass blokkokat, urald a gravitációt! Okos taktikai logikai játék."}, "hy-AM": {"title": "TILT: Ձգողականության Փազլ", "desc": "Սահեցրեք բլոկները, կառավարեք ձգողականությունը և միավորեք: Խելացի փազլ:"}, "is-IS": {"title": "TILT: Þyngdarafls Kubbaþraut", "desc": "Renndu kubbum, stjórnaðu þyngdaraflinu og sameinaðu! Snjall heilaþrautaleikur."}, "iw-IL": {"title": "TILT: פאזל בלוקים וכבידה", "desc": "החלק בלוקים, שלוט בכבידה ומזג מספרים! משחק פאזל טקטי חכם וממכר לאימון המוח."}, "ka-GE": {"title": "TILT: გრავიტაციული თავსატეხი", "desc": "გადააადგილეთ ბლოკები, მართეთ გრავიტაცია და შეაერთეთ! ჭკვიანური თავსატეხი."}, "kk": {"title": "TILT: Гравитация Блок Пазл", "desc": "Блоктарды жылжытыңыз, гравитацияны басқарып біріктіріңіз! Тактикалық логика."}, "km-KH": {"title": "TILT: ល្បែងផ្គុំរូបទំនាញផែនដី", "desc": "រុញប្លុក គ្រប់គ្រងទំនាញផែនដី និងបញ្ចូលគ្នា! ល្បែងផ្គុំរូបយុទ្ធសាស្ត្រឆ្លាតវៃ។"}, "kn-IN": {"title": "TILT: ಗ್ರಾವಿಟಿ ಬ್ಲಾಕ್ ಒಗಟು", "desc": "ಬ್ಲಾಕ್‌ಗಳನ್ನು ಸ್ಲೈಡ್ ಮಾಡಿ, ಗ್ರಾವಿಟಿ ನಿಯಂತ್ರಿಸಿ ಮತ್ತು ವಿಲೀನಗೊಳಿಸಿ! ಚತುರ ಪಜಲ್ ಆಟ."}, "ky-KG": {"title": "TILT: Гравитация Блок Пазл", "desc": "Блокторду жылдырып, тартылуу күчүн башкарыңыз! Акылдуу тактикалык пазл."}, "lo-LA": {"title": "TILT: ເກມປິດສະໜາແຮງໂນ້ມຖ່ວງ", "desc": "ເລື່ອນບລັອກ, ຄວບຄຸມແຮងໂນ້ມຖ່ວງ ແລະ ຮວມເຂົ້າກັນ! ເກມປິດສະໜາຝຶກສະໝອງສຸດສະຫຼາດ."}, "lt": {"title": "TILT: Gravitacijos Dėlionė", "desc": "Stumkite blokus, valdykite gravitaciją ir junkite! Protingas galvosūkis."}, "lv": {"title": "TILT: Gravitācijas Bloku Puzle", "desc": "Bīdiet blokus, vadiet gravitāciju un apvienojiet! Gudra taktiskā prāta spēle."}, "mk-MK": {"title": "TILT: Гравитациска Сложувалка", "desc": "Лизгајте блокови, контролирајте ја гравитацијата и спојувајте! Тактичка загатка."}, "ml-IN": {"title": "TILT: ഗ്രാവിറ്റി ബ്ലോക്ക് പസിൽ", "desc": "ബ്ലോക്കുകൾ സ്ലൈഡ് ചെയ്യുക, ഗ്രാവിറ്റി നിയന്ത്രിക്കുക & ലയിപ്പിക്കുക! പസിൽ ഗെയിം."}, "mn-MN": {"title": "TILT: Таталцлын Блок Эвлүүлдэг", "desc": "Блокуудыг гулсуулж, таталцлыг удирдан нэгтгэ! Ухаалаг тактикийн логик тоглоом."}, "mr-IN": {"title": "TILT: ग्रॅव्हिटी ब्लॉक कोडे", "desc": "ब्लॉक सरकवा, गुरुत्वाकर्षण नियंत्रित करा आणि एकत्र करा! हुशार रणनीती पझल गेम."}, "ms": {"title": "TILT: Teka-teki Blok Graviti", "desc": "Luncur blok, kuasai graviti & cantum! Permainan teka-teki taktik yang pintar."}, "ms-MY": {"title": "TILT: Teka-teki Blok Graviti", "desc": "Luncur blok, kuasai graviti & cantum! Permainan teka-teki taktik yang pintar."}, "my-MM": {"title": "TILT: ဒြပ်ဆွဲအား ပဟေဠိ", "desc": "ဘလောက်များကို ရွှေ့ပါ၊ ဒြပ်ဆွဲအားကို ထိန်းချုပ်ပြီး ပေါင်းစပ်ပါ။ စမတ်ပဟေဠိဂိမ်း။"}, "ne-NP": {"title": "TILT: ग्र्याभिटी ब्लक पजल", "desc": "ब्लक स्लाइड गर्नुहोस्, गुरुत्वाकर्षण मिलाउनुहोस्! स्मार्ट रणनीतिक खेल।"}, "no-NO": {"title": "TILT: Gravitasjon Puslespill", "desc": "Skyv blokker, mestr gravitasjonen og slå sammen! Smart taktisk hjernetrim."}, "pa": {"title": "TILT: ਗ੍ਰੈਵਿਟੀ ਬਲਾਕ ਪਹੇਲੀ", "desc": "ਬਲਾਕ ਸਲਾਈਡ ਕਰੋ, ਗੁਰੂਤਾਕਰਸ਼ਣ ਕੰਟਰੋਲ ਕਰੋ ਤੇ ਮਿਲਾਓ! ਸ਼ਾਨਦਾਰ ਰਣਨੀਤਕ ਬ੍ਰੇਨ ਪਜ਼ਲ ਗੇਮ।"}, "rm": {"title": "TILT: Puzel da Gravitaziun", "desc": "Glischa blocs, dominescha la gravitaziun & cumbinescha! Gieu da logica tactic."}, "ro": {"title": "TILT: Puzzle cu Gravitație", "desc": "Glisează blocuri, controlează gravitația și combină! Puzzle tactic inteligent."}, "si-LK": {"title": "TILT: ගුරුත්ව ප්‍රහේලිකාව", "desc": "බ්ලොක් ලිස්සන්න, ගුරුත්වය පාලනය කර ඒකාබද්ධ කරන්න! මොළය වෙහෙසවන ක්‍රීඩාව."}, "sk": {"title": "TILT: Gravitačný Hlavolam", "desc": "Posúvajte bloky, ovládajte gravitáciu a spájajte! Inteligentná taktická hra."}, "sl": {"title": "TILT: Gravitacijska Uganka", "desc": "Drsite bloke, obvladajte gravitacijo in združujte! Pametna miselna igra."}, "sq": {"title": "TILT: Gravitacion Bllok Puzzle", "desc": "Rrëshqitni blloqet, zotëroni gravitetin & bashkoni! Lojë inteligjente taktike."}, "sr": {"title": "TILT: Гравитациона Слагалица", "desc": "Померајте блокове, контролишите гравитацију и спајајте! Паметна тактичка игра."}, "sv-SE": {"title": "TILT: Gravitationspussel", "desc": "Skjut block, styr gravitationen & slå samman! Smart taktiskt hjärngympa-pussel."}, "sw": {"title": "TILT: Fumbo la Mvuto wa Vitalu", "desc": "Sogeza vitalu, dhibiti mvuto & unganisha namba! Mchezo mzuri wa akili na mbinu."}, "ta-IN": {"title": "TILT: ஈர்ப்பு விசை புதிர்", "desc": "பிளாக்குகளை நகர்த்தி, ஈர்ப்பு விசையை கட்டுப்படுத்தி இணையுங்கள்! சிறந்த புதிர்."}, "te-IN": {"title": "TILT: గ్రావిటీ బ్లాక్ పజిల్", "desc": "బ్లాకులను స్లైడ్ చేయండి, గ్రావిటీని నియంత్రించి కలపండి! అద్భుతమైన తెలివైన పజిల్."}, "uk": {"title": "TILT: Гравітація Головоломка", "desc": "Рухайте блоки, керуйте гравітацією та об'єднуйте! Розумна тактична головоломка."}, "ur": {"title": "TILT: کشش ثقل بلاک پہیلی", "desc": "بلاک سلائیڈ کریں، کشش ثقل قابو کریں اور ملائیں! زبردست اسمارٹ پہیلی گیم۔"}, "zu": {"title": "TILT: Iphazili Yebhulokhi", "desc": "Slayida amabhulokhi, lawula amandla adonsela phansi & hlanganisa! Iphazili."}};
+
+    function applyLang() {
+      const params = new URLSearchParams(window.location.search);
+      const lang = params.get('lang') || 'tr-TR';
       
-      if (val === 0) {
-        // Empty Slot
-        ctx.fillStyle = '#141525';
-        ctx.strokeStyle = '#1d1e33';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.roundRect(x, y, cellSize, cellSize, 12);
-        ctx.fill();
-        ctx.stroke();
-      } else {
-        // Number Tile
-        const style = TILE_COLORS[val] || { bg: '#2b0938', border: '#d946ef', text: '#fae8ff', glow: 'rgba(217,70,239,0.5)' };
-        
-        ctx.shadowColor = style.glow;
-        ctx.shadowBlur = 12;
-        ctx.fillStyle = style.bg;
-        ctx.strokeStyle = style.border;
-        ctx.lineWidth = 2.5;
-        
-        ctx.beginPath();
-        ctx.roundRect(x, y, cellSize, cellSize, 12);
-        ctx.fill();
-        ctx.stroke();
-        ctx.shadowBlur = 0; // reset
-        
-        // Label
-        ctx.fillStyle = style.text;
-        ctx.font = val >= 1024 ? 'bold 22px Arial, sans-serif' : (val >= 128 ? 'bold 26px Arial, sans-serif' : 'bold 30px Arial, sans-serif');
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(val.toString(), x + cellSize / 2, y + cellSize / 2);
+      const select = document.getElementById('language');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.includes(lang)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      const data = T[lang] || T[lang.split('-')[0]] || T['en-US'];
+      if (data) {
+        if (data.title) {
+          document.getElementById('game-title').textContent = data.title;
+          document.title = data.title + ' — Falcon 29';
+        }
+        if (data.desc) {
+          document.getElementById('game-subtitle').textContent = data.desc;
+        }
+      }
+
+      // Update back link
+      const short = (lang === 'tr-TR' || lang === 'tr') ? '/tilt/' : '/' + lang.split('-')[0] + '/tilt/';
+      const back = document.getElementById('back-link');
+      if (back) back.href = short;
+
+      // Sync language to godot iframe via hash if needed
+      const frame = document.getElementById('godot-frame');
+      if (frame && !frame.src.includes('#')) {
+        frame.src = '/tilt/play/godot/#' + encodeURIComponent(lang);
       }
     }
-  }
-}
 
-// User Input Listeners
-window.addEventListener('keydown', (e) => {
-  if (['ArrowLeft', 'a', 'A'].includes(e.key)) { e.preventDefault(); move('left'); }
-  else if (['ArrowRight', 'd', 'D'].includes(e.key)) { e.preventDefault(); move('right'); }
-  else if (['ArrowUp', 'w', 'W'].includes(e.key)) { e.preventDefault(); move('up'); }
-  else if (['ArrowDown', 's', 'S'].includes(e.key)) { e.preventDefault(); move('down'); }
-});
+    // Fullscreen support
+    document.getElementById('fs-btn').addEventListener('click', function () {
+      const container = document.getElementById('game-container');
+      if (!document.fullscreenElement) {
+        if (container.requestFullscreen) {
+          container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {
+          container.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    });
 
-// Touch / Swipe Gestures
-let touchStartX = 0;
-let touchStartY = 0;
-
-canvas.addEventListener('touchstart', (e) => {
-  if (e.touches.length > 0) {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }
-}, { passive: true });
-
-canvas.addEventListener('touchend', (e) => {
-  if (e.changedTouches.length > 0) {
-    const diffX = e.changedTouches[0].clientX - touchStartX;
-    const diffY = e.changedTouches[0].clientY - touchStartY;
-    handleSwipe(diffX, diffY);
-  }
-}, { passive: true });
-
-// Mouse Drag Swipe
-let mouseStartX = 0;
-let mouseStartY = 0;
-let isMouseDown = false;
-
-canvas.addEventListener('mousedown', (e) => {
-  isMouseDown = true;
-  mouseStartX = e.clientX;
-  mouseStartY = e.clientY;
-});
-
-canvas.addEventListener('mouseup', (e) => {
-  if (!isMouseDown) return;
-  isMouseDown = false;
-  const diffX = e.clientX - mouseStartX;
-  const diffY = e.clientY - mouseStartY;
-  handleSwipe(diffX, diffY);
-});
-
-function handleSwipe(dx, dy) {
-  const threshold = 35;
-  if (Math.abs(dx) < threshold && Math.abs(dy) < threshold) return;
-  if (Math.abs(dx) > Math.abs(dy)) {
-    if (dx > 0) move('right');
-    else move('left');
-  } else {
-    if (dy > 0) move('down');
-    else move('up');
-  }
-}
-
-// DPAD Buttons
-document.getElementById('dpad-up').addEventListener('click', () => move('up'));
-document.getElementById('dpad-down').addEventListener('click', () => move('down'));
-document.getElementById('dpad-left').addEventListener('click', () => move('left'));
-document.getElementById('dpad-right').addEventListener('click', () => move('right'));
-
-// Action Buttons
-startBtn.addEventListener('click', () => {
-  initAudio();
-  splash.style.display = 'none';
-  initBoard();
-});
-
-restartBtn.addEventListener('click', () => {
-  initBoard();
-});
-
-newBtn.addEventListener('click', () => {
-  initBoard();
-});
-
-soundBtn.addEventListener('click', () => {
-  soundEnabled = !soundEnabled;
-  soundBtn.textContent = soundEnabled ? '🔊' : '🔇';
-});
-
-fsBtn.addEventListener('click', () => {
-  if (!document.fullscreenElement) {
-    container.requestFullscreen().catch(() => {});
-  } else {
-    document.exitFullscreen();
-  }
-});
-
-// Render Initial Background
-render();
-</script></body></html>
+    applyLang();
+  </script>
+</body>
+</html>
